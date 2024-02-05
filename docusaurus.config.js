@@ -9,7 +9,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'fn-wang-10.github.io',
-  tagline: 'Dinosaurs are cool',
+  tagline: 'my-site',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -67,7 +67,7 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'My Site',
+        title: 'fn-wang-10',
         logo: {
           alt: 'My Site Logo',
           src: 'img/logo.svg',
@@ -77,11 +77,11 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Tutorial',
+            label: '笔记',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          {to: '/blog', label: '博客', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/FN-Wang-10/fn-wang-10.github.io.git',
             label: 'GitHub',
             position: 'right',
           },

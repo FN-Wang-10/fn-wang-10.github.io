@@ -1,0 +1,11 @@
+.tips {
+  height: 60px;
+  background-color:khaki;
+  border-radius: 10px;
+  font-weight: bolder;
+  font-size: 26px;
+  margin: 20px 0;
+  line-height: 60px;
+  padding-left: 10px;
+  color: rgb(46, 133, 85);
+}

@@ -1,39 +1,34 @@
-import clsx from "clsx";
+import React from "react";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
-import HomepageFeatures from "@site/src/components/HomepageFeatures";
+import Tips from "../components/tips";
+import { HOME_BUTTON_CONFIG } from "../utils";
 
-import Heading from "@theme/Heading";
-import styles from "./index.module.css";
-
-function HomepageHeader() {
-  const { siteConfig } = useDocusaurusContext();
-  return (
-    <header className={clsx("hero hero--primary", styles.heroBanner)}>
-      <div className="container">
-        <Heading as="h1" className="hero__title">
-          {siteConfig.title}
-        </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          {/* <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro">
-          </Link> */}
-        </div>
-      </div>
-    </header>
-  );
-}
+import "./index.css";
 
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
+  const PRIMARY_CLASS = "button button--primary button--lg mg-8";
+  console.log("siteConfig", siteConfig);
+
   return (
-    <Layout title={`${siteConfig.title}`} description="my-site">
-      <HomepageHeader />
-      <main>
-        <HomepageFeatures />
+    <Layout>
+      <main className="layout-main">
+        <div className="wrap">
+          <Tips />
+          {HOME_BUTTON_CONFIG.length &&
+            HOME_BUTTON_CONFIG.map((item) => (
+              <div key={item.title}>
+                {item.children.length &&
+                  item.children.map((i) => (
+                    <Link key={i.to} to={i.to} className={PRIMARY_CLASS}>
+                      {i.title}
+                    </Link>
+                  ))}
+              </div>
+            ))}
+        </div>
       </main>
     </Layout>
   );

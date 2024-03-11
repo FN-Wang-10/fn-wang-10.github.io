@@ -6,7 +6,7 @@
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://fn-wang-10.github.io/blog"/>
     <subtitle>fn-wang-10.github.io Blog</subtitle>
-    <icon>https://fn-wang-10.github.io/img/favicon.ico</icon>
+    <icon>https://fn-wang-10.github.io/img/logo.ico</icon>
     <entry>
         <title type="html"><![CDATA[Welcome]]></title>
         <id>https://fn-wang-10.github.io/blog/welcome</id>

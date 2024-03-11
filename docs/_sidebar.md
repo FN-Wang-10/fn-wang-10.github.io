@@ -1,4 +1,10 @@
-<!-- 
+## JavaScript
+
+- [首页](快速入门.md)
+1. [JS数据类型](JavaScript/JS数据类型.md)
+2. [JS判断数据类型的方法](JavaScript/JS判断数据类型的方法.md)
+
+<!--
 ## Html
 1. [元素](Html/元素.md)
 
@@ -52,7 +58,7 @@
 48. [JS怎么进行类型转换](JavaScript/JS怎么进行类型转换.md)
 49. [requirejs使用方法](JavaScript/requirejs使用方法.md)
 50. [Jsbridge](JavaScript/Jsbridge.md)
-51. 
+51.
 
 - [ ] [作用域链](JavaScript/作用域链.md)
 - [ ] [Javascript如何实现继承](JavaScript/Javascript如何实现继承.md)
@@ -110,7 +116,7 @@
 
 
 ## Vue
-1. [给vue的data添加一个新的属性](vue/给vue的data添加一个新的属性.md) 
+1. [给vue的data添加一个新的属性](vue/给vue的data添加一个新的属性.md)
 2. [什么是虚拟DOM，如何实现一个虚拟DOM](vue/什么是虚拟DOM，如何实现一个虚拟DOM.md)
 3. [双向数据绑定是什么](vue/双向数据绑定是什么.md)
 4. [为什么data属性是一个函数而不是一个对象](vue/为什么data属性是一个函数而不是一个对象.md)

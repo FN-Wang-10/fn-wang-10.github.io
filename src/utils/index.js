@@ -6,6 +6,10 @@ export const HOME_BUTTON_CONFIG = [
         to: "docs/Html",
         title: "Html",
       },
+      {
+        to: "docs/Css样式",
+        title: "Css样式",
+      },
     ],
   },
   {

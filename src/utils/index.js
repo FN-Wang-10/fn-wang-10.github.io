@@ -10,11 +10,6 @@ export const HOME_BUTTON_CONFIG = [
         to: "docs/Css样式",
         title: "Css样式",
       },
-    ],
-  },
-  {
-    title: 2,
-    children: [
       {
         to: "docs/JavaScript",
         title: "JavaScript",
@@ -30,7 +25,7 @@ export const HOME_BUTTON_CONFIG = [
     ],
   },
   {
-    title: 3,
+    title: 2,
     children: [
       {
         to: "docs/React",
@@ -55,7 +50,7 @@ export const HOME_BUTTON_CONFIG = [
     ],
   },
   {
-    title: 4,
+    title: 3,
     children: [
       {
         to: "docs/Webpack",
@@ -64,7 +59,7 @@ export const HOME_BUTTON_CONFIG = [
     ],
   },
   {
-    title: 5,
+    title: 4,
     children: [
       {
         to: "docs/浏览器",
@@ -77,7 +72,7 @@ export const HOME_BUTTON_CONFIG = [
     ],
   },
   {
-    title: 6,
+    title: 5,
     children: [
       {
         to: "docs/算法",
@@ -106,7 +101,7 @@ export const HOME_BUTTON_CONFIG = [
     ],
   },
   {
-    title: 7,
+    title: 6,
     children: [
       {
         to: "docs/其它",

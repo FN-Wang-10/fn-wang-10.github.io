@@ -17,3 +17,5 @@
 16. [JS执行上下文](JS执行上下文.md)
 17. [JS精度丢失](JS精度丢失.md)
 18. [web常见的攻击方式有哪些](web常见的攻击方式有哪些.md)
+19. [require 和 import 的区别](require和import的区别.md)
+20. [href 和 src 的区别](href和src的区别.md)

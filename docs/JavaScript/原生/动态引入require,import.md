@@ -1,4 +1,4 @@
-<!-- ---
+---
 tags:
   - require
   - import
@@ -130,4 +130,4 @@ imgUrl = ''; // 与require参数类似，不能通过纯参数的方式引入模
 import('/images/tree/tree.png').then((res) => {
   imgUrl = res;
 });
-``` -->
+```

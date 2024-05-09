@@ -1,4 +1,4 @@
-<!-- ## 总结
+## 总结
 
 1. 语法  
    require('module')  
@@ -34,4 +34,4 @@
 // // 可以简单理解为
 // import { foo, bar } from "my_module";
 // export { foo, bar };
-``` -->
+```

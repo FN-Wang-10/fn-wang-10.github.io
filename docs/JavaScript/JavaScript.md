@@ -17,6 +17,5 @@
 - [JS 执行上下文](JS执行上下文.md)
 - [JS 精度丢失](JS精度丢失.md)
 - [web 常见的攻击方式有哪些](web常见的攻击方式有哪些.md)
-<!-- - [require 和 import 的区别](require和import的区别.md) -->
+- [require 和 import 的区别](require和import的区别.md)
 - [href 和 src 的区别](href和src的区别.md)
-- [动态引入（require-import）](动态引入（require-import）.md)

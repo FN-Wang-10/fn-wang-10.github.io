@@ -106,6 +106,10 @@ export const HOME_BUTTON_CONFIG = [
         to: "docs/设计模式",
         title: "设计模式",
       },
+      {
+        to: "docs/操作系统",
+        title: "操作系统",
+      },
     ],
   },
   {

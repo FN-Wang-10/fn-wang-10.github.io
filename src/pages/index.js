@@ -3,7 +3,7 @@ import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import Tips from "../components/tips";
-import { HOME_BUTTON_CONFIG } from "../utils";
+import { HOME_BUTTON_CONFIG } from "../config";
 
 import "./index.css";
 

@@ -98,6 +98,10 @@ export const HOME_BUTTON_CONFIG = [
         to: "docs/终端",
         title: "终端",
       },
+      {
+        to: "docs/Vim",
+        title: "Vim",
+      },
     ],
   },
   {

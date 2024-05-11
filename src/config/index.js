@@ -75,8 +75,8 @@ export const HOME_BUTTON_CONFIG = [
     title: 5,
     children: [
       {
-        to: "docs/算法",
-        title: "算法",
+        to: "docs/算法和数据结构",
+        title: "算法和数据结构",
       },
       {
         to: "docs/Git",
@@ -101,6 +101,10 @@ export const HOME_BUTTON_CONFIG = [
       {
         to: "docs/Vim",
         title: "Vim",
+      },
+      {
+        to: "docs/设计模式",
+        title: "设计模式",
       },
     ],
   },

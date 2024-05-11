@@ -1,4 +1,4 @@
----
+<!-- ---
 slug: /nginx
 ---
 
@@ -159,4 +159,4 @@ kill -QUIT xxxid
 
 - [nginx下载地址](https://nginx.org/en/download.html)
 
-<!-- more -->
+more -->

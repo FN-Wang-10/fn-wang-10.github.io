@@ -14,10 +14,10 @@ export const HOME_BUTTON_CONFIG = [
         to: "docs/JavaScript",
         title: "JavaScript",
       },
-      {
-        to: "docs/ES6",
-        title: "ES6",
-      },
+      // {
+      //   to: "docs/ES6",
+      //   title: "ES6",
+      // },
       {
         to: "docs/TypeScript",
         title: "TypeScript",

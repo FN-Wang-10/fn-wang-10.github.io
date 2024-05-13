@@ -1959,7 +1959,7 @@
     "@docsearch/css" "3.5.2"
     algoliasearch "^4.19.1"
 
-"@docusaurus/core@3.3.2", "@docusaurus/core@^3.3.2":
+"@docusaurus/core@3.3.2", "@docusaurus/core@^3.1.0":
   version "3.3.2"
   resolved "http://mirrors.npm.caocaokeji.cn/repository/npm/@docusaurus/core/-/core-3.3.2.tgz#67b8cd5329b32f47515ecf12eb7aa306dfc69922"
   integrity sha512-PzKMydKI3IU1LmeZQDi+ut5RSuilbXnA8QdowGeJEgU8EJjmx3rBHNT1LxQxOVqNEwpWi/csLwd9bn7rUjggPA==
@@ -2081,7 +2081,7 @@
     vfile "^6.0.1"
     webpack "^5.88.1"
 
-"@docusaurus/module-type-aliases@3.3.2", "@docusaurus/module-type-aliases@^3.3.2":
+"@docusaurus/module-type-aliases@3.3.2", "@docusaurus/module-type-aliases@^3.1.0":
   version "3.3.2"
   resolved "http://mirrors.npm.caocaokeji.cn/repository/npm/@docusaurus/module-type-aliases/-/module-type-aliases-3.3.2.tgz#02534449d08d080fd52dc9e046932bb600c38b01"
   integrity sha512-b/XB0TBJah5yKb4LYuJT4buFvL0MGAb0+vJDrJtlYMguRtsEBkf2nWl5xP7h4Dlw6ol0hsHrCYzJ50kNIOEclw==
@@ -2211,7 +2211,7 @@
     sitemap "^7.1.1"
     tslib "^2.6.0"
 
-"@docusaurus/preset-classic@^3.3.2":
+"@docusaurus/preset-classic@^3.1.0":
   version "3.3.2"
   resolved "http://mirrors.npm.caocaokeji.cn/repository/npm/@docusaurus/preset-classic/-/preset-classic-3.3.2.tgz#1c89b5f35f9e727a1c91bc03eb25a5b42b7d67a6"
   integrity sha512-1SDS7YIUN1Pg3BmD6TOTjhB7RSBHJRpgIRKx9TpxqyDrJ92sqtZhomDc6UYoMMLQNF2wHFZZVGFjxJhw2VpL+Q==
@@ -2312,7 +2312,7 @@
     fs-extra "^11.1.1"
     tslib "^2.6.0"
 
-"@docusaurus/types@3.3.2", "@docusaurus/types@^3.3.2":
+"@docusaurus/types@3.3.2", "@docusaurus/types@^3.1.0":
   version "3.3.2"
   resolved "http://mirrors.npm.caocaokeji.cn/repository/npm/@docusaurus/types/-/types-3.3.2.tgz#0e17689512b22209a98f22ee80ac56899e94d390"
   integrity sha512-5p201S7AZhliRxTU7uMKtSsoC8mgPA9bs9b5NQg1IRdRxJfflursXNVsgc3PcMqiUTul/v1s3k3rXXFlRE890w==

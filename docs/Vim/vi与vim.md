@@ -1,4 +1,4 @@
----
+<!-- ---
 slug: /vim
 sidebar_position: 1
 tags:
@@ -58,4 +58,4 @@ vim中文键位图
 
 - [welcome home : vim online](https://www.vim.org/)
 - [vi - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/Vi)
-- [Vim - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/Vim)- 
+- [Vim - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/Vim)-  -->

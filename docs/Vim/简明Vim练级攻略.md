@@ -1,4 +1,4 @@
----
+<!-- ---
 tags:
   - vim
 ---
@@ -265,4 +265,4 @@ tags:
 
 ## 参考文档：
 
-[简明 Vim 练级攻略 | 酷 壳 - CoolShell](https://coolshell.cn/articles/5426.html)
+[简明 Vim 练级攻略 | 酷 壳 - CoolShell](https://coolshell.cn/articles/5426.html) -->

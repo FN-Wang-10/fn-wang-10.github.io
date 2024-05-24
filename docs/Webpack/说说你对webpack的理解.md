@@ -8,7 +8,7 @@
 
 约定每个文件是一个独立的模块，然后再将这些`js`文件引入到页面，一个`script`标签对应一个模块，然后调用模块化的成员
 
-```html
+```javascript
 <script src="module-a.js"></script>
 <script src="module-b.js"></script>
 ```
@@ -19,7 +19,7 @@
 
 随后，就出现了命名空间方式，规定每个模块只暴露一个全局对象，然后模块的内容都挂载到这个对象中
 
-```js
+```javascript
 window.moduleA = {
   method1: function () {
     console.log("moduleA#method1");
@@ -31,7 +31,7 @@ window.moduleA = {
 
 再后来，我们使用立即执行函数为模块提供私有空间，通过参数的形式作为依赖声明，如下
 
-```js
+```javascript
 // module-a.js
 (function ($) {
   var name = "module-a";

@@ -72,20 +72,20 @@ const config = {
           alt: "My Site Logo",
           src: "img/logo.ico",
         },
-        // items: [
-        //   {
-        //     type: "docSidebar",
-        //     sidebarId: "tutorialSidebar",
-        //     position: "left",
-        //     label: "沉淀",
-        //   },
-        //   // {to: '/blog', label: '博客', position: 'left'},
-        //   // {
-        //   //   href: 'https://github.com/FN-Wang-10/fn-wang-10.github.io.git',
-        //   //   label: 'GitHub',
-        //   //   position: 'right',
-        //   // },
-        // ],
+        items: [
+          // {
+          //   type: "docSidebar",
+          //   sidebarId: "tutorialSidebar",
+          //   position: "left",
+          //   label: "沉淀",
+          // },
+          {to: '/blog', label: '博客', position: 'left'},
+          // {
+          //   href: 'https://github.com/FN-Wang-10/fn-wang-10.github.io.git',
+          //   label: 'GitHub',
+          //   position: 'right',
+          // },
+        ],
       },
       // footer: {
       //   style: 'dark',

@@ -2,9 +2,11 @@
 
 ## 一、运行流程
 
+![](../../static/img/webpack/2448697-20210926225345358-1365005303.png)
+
 `webpack` 的运行流程是一个串行的过程，它的工作流程就是将各个插件串联起来
 
-在运行过程中会广播事件，插件只需要监听它所关心的事件，就能加入到这条`webpack`机制中，去改变`webpack`的运作，使得整个系统扩展性良好
+**在运行过程中会广播事件，插件只需要监听它所关心的事件，就能加入到这条`webpack`机制中，去改变`webpack`的运作，使得整个系统扩展性良好**
 
 从启动到结束会依次执行以下三大步骤：
 
@@ -12,8 +14,7 @@
 - 编译构建流程：从 Entry 发出，针对每个 Module 串行调用对应的 Loader 去翻译文件内容，再找到该 Module 依赖的 Module，递归地进行编译处理
 - 输出流程：对编译后的 Module 组合成 Chunk，把 Chunk 转换成文件，输出到文件系统
 
- ![](https://static.vue-js.com/b566d400-a658-11eb-85f6-6fac77c0c9b3.png)
-
+![](https://static.vue-js.com/b566d400-a658-11eb-85f6-6fac77c0c9b3.png)
 
 ### 初始化流程
 
@@ -92,16 +93,14 @@ function webpack(options) {
 
 `Compiler` 对象继承自 `Tapable`，初始化时定义了很多钩子函数
 
-
-
 ### 编译构建流程
 
 根据配置中的 `entry` 找出所有的入口文件
 
 ```javascript
 module.exports = {
-  entry: './src/file.js'
-}
+  entry: "./src/file.js",
+};
 ```
 
 初始化完成后会调用`Compiler`的`run`来真正启动`webpack`编译构建流程，主要流程如下：
@@ -110,17 +109,13 @@ module.exports = {
 - `make` 从入口点分析模块及其依赖的模块，创建这些模块对象
 - `build-module` 构建模块
 - `seal` 封装构建结果
-- `emit` 把各个chunk输出到结果文件
-
-
+- `emit` 把各个 chunk 输出到结果文件
 
 #### compile 编译
 
 执行了`run`方法后，首先会触发`compile`，主要是构建一个`Compilation`对象
 
 该对象是编译阶段的主要执行者，主要会依次下述流程：执行模块创建、依赖收集、分块、打包等主要任务的对象
-
-
 
 #### make 编译模块
 
@@ -132,7 +127,7 @@ _addModuleChain(context, dependency, onModule, callback) {
    // 根据依赖查找对应的工厂函数
    const Dep = /** @type {DepConstructor} */ (dependency.constructor);
    const moduleFactory = this.dependencyFactories.get(Dep);
-   
+
    // 调用工厂函数NormalModuleFactory的create来生成一个空的NormalModule对象
    moduleFactory.create({
        dependencies: [dependency]
@@ -145,7 +140,7 @@ _addModuleChain(context, dependency, onModule, callback) {
          callback(null, module);
            });
     };
-       
+
        this.buildModule(module, false, null, null, err => {
            ...
            afterBuild();
@@ -162,17 +157,13 @@ _addModuleChain(context, dependency, onModule, callback) {
 
 随后执行`buildModule`进入真正的构建模块`module`内容的过程
 
-
-
 #### build module 完成模块编译
 
 这里主要调用配置的`loaders`，将我们的模块转成标准的`JS`模块
 
 在用` Loader` 对一个模块转换完后，使用 `acorn` 解析转换后的内容，输出对应的抽象语法树（`AST`），以方便 `Webpack `后面对代码的分析
 
-从配置的入口模块开始，分析其 `AST`，当遇到` require `等导入其它模块语句时，便将其加入到依赖的模块列表，同时对新找出的依赖模块递归分析，最终搞清所有模块的依赖关系
-
-
+从配置的入口模块开始，分析其 `AST`，当遇到`require`等导入其它模块语句时，便将其加入到依赖的模块列表，同时对新找出的依赖模块递归分析，最终搞清所有模块的依赖关系
 
 ### 输出流程
 
@@ -183,8 +174,6 @@ _addModuleChain(context, dependency, onModule, callback) {
 `webpack` 中的 `chunk` ，可以理解为配置在 `entry` 中的模块，或者是动态引入的模块
 
 根据入口和模块之间的依赖关系，组装成一个个包含多个模块的 `Chunk`，再把每个 `Chunk` 转换成一个单独的文件加入到输出列表
-
-
 
 #### emit 输出完成
 
@@ -201,15 +190,18 @@ output: {
 
 从而`webpack`整个打包过程则结束了
 
+## 构建流程
 
+1. 初始化参数。获取用户在 webpack.config.js 文件配置的参数
+2. 开始编译。初始化 compiler 对象，注册所有的插件 plugins，插件开始监听 webpack 构建过程的生命周期事件，不同环节会有相应的处理，然后开始执行编译。
+3. 确定入口。根据 webpack.config.js 文件的 entry 入口，开始解析文件构建 ast 语法树，找抽依赖，递归下去。
+4. 编译模块。递归过程中，根据文件类型和 loader 配置，调用相应的 loader 对不同的文件做转换处理，在找出该模块依赖的模块，递归本操作，直到项目中依赖的所有模块都经过了本操作的编译处理。
+5. 完成编译并输出。递归结束，得到每个文件结果，包含转换后的模块以及他们之前的依赖关系，根据 entry 以及 output 等配置生成代码块 chunk
+6. 打包完成。根据 output 输出所有的 chunk 到相应的文件目录
 
 ### 小结
 
- ![](https://static.vue-js.com/d77fc560-a658-11eb-85f6-6fac77c0c9b3.png)
-
-
-
-
+![](https://static.vue-js.com/d77fc560-a658-11eb-85f6-6fac77c0c9b3.png)
 
 ## 参考文献
 

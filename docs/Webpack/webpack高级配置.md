@@ -1697,4 +1697,227 @@ module.exports = merge(webpackCommonConf, {
 
 ### 自动刷新
 
+一般情况下 webpack-dev-server 会自动刷新浏览器
+
+![](../../static/img/webpack/F07D947B-059E-4457-83DF-897BB19E16DB.png)
+
 ### 热更新
+
+自动刷新的弊端  
+自动刷新；整个网页全部刷新，速度较慢，状态丢失
+
+热更新：新代码生效，网页不刷新，状态不丢失
+
+**HotModuleReplacementPlugin**
+
+![](../../static/img/webpack/C608CF2A-472D-4f87-BC3B-BFB564035F5A.png)
+![](../../static/img/webpack/84EAA3BB-2A61-44de-83A5-275D62C30D91.png)
+
+webpack.dev.js
+
+```javascript
+/* eslint-disable */
+const path = require("path");
+const webpack = require("webpack");
+const webpackCommonConf = require("./webpack.common.js");
+const { merge } = require("webpack-merge");
+const srcPath = path.join(__dirname, "..", "src");
+const distPath = path.join(__dirname, "..", "dist");
+
+const HotModuleReplacementPlugin = require("webpack/lib/HotModuleReplacementPlugin");
+
+module.exports = merge(webpackCommonConf, {
+  // watch: true, // 默认是false
+  // watchOptions: {
+  //     ignored: /node_modules/, // 忽略哪些
+  //     // 监听到变化发生后会等300ms再去执行动作，防止文件更新太快导致重新编译频率太高
+  //     // 默认为 300ms
+  //     aggregateTimeout: 200,
+  //     // 判断文件是否发生变化是通过不停的去询问系统指定文件有没有变化实现的
+  //     // 默认每隔1000毫秒询问一次
+  //     poll: 1000,
+  // },
+  mode: "development",
+  entry: {
+    // index: path.join(srcPath, 'index.js'),
+    index: [
+      "webpack-dev-server/client?http://localhost:8080/",
+      "webpack/hot/dev-server",
+      path.join(srcPath, "index.js"),
+    ],
+    // other: path.join(srcPath, 'other.js')
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: ["babel-loader?cacheDirectory"],
+        include: srcPath,
+        // exclude: /node_modules/
+      },
+      // 直接引入图片 url
+      {
+        test: /\.(png|jpg|jpeg|gif)$/,
+        use: "file-loader",
+      },
+      // {
+      //     test: /\.css$/,
+      //     // loader 的执行顺序是：从后往前
+      //     loader: ['style-loader', 'css-loader']
+      // },
+      {
+        test: /\.css$/,
+        // loader 的执行顺序是：从后往前
+        use: ["style-loader", "css-loader", "postcss-loader"], // 加了 postcss
+      },
+      {
+        test: /\.less$/,
+        // 增加 'less-loader' ，注意顺序
+        use: ["style-loader", "css-loader", "less-loader"],
+      },
+    ],
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      // window.ENV = 'production'
+      ENV: JSON.stringify("development"),
+    }),
+    new HotModuleReplacementPlugin(),
+  ],
+  devServer: {
+    port: 8080,
+    // open: true,  // 自动打开浏览器
+    client: {
+      progress: true,
+      // watch: true, // 开启监听，默认为 false
+    },
+    compress: true, // 启动 gzip 压缩
+    hot: true,
+    // 设置代理
+    proxy: {
+      // 将本地 /api/xxx 代理到 localhost:9000/api/xxx
+      "/api": "http://localhost:9000",
+
+      // 将本地 /api2/xxx 代理到 localhost:30900000/xxx
+      "/api2": {
+        target: "http://localhost:9000",
+        pathRewrite: {
+          "/api2": "",
+        },
+      },
+    },
+  },
+});
+```
+
+## webpack 性能优化————优化产出物
+
+- 体积小
+- 合理分包，不重复 loader
+- 访问速度更快
+
+具体
+
+- base64 图片
+  > url-loader 小于多少 kb 的图片打成 base64
+- bundle 加 contenthash
+  > 文件改动了，hash 值才会变，如果没改动就不会改变，浏览器二次访问的时候可以直接从缓存中取
+- 懒加载
+  > import()
+- 提取公用代码
+  > 提取第三方的包和公共的逻辑代码，可以让业务代码的包的体积减小
+- IgnorePlugin 避免引入无效代码
+- 使用 cdn 加速
+- 使用 production
+  > 默认会压缩 js
+- ScopeHoisting
+
+### cdn 加速
+
+需要将打包后的文件上上传到 cdn 服务器
+
+![](../../static/img/webpack/C5CEA361-ABFE-4f72-B48E-AF2BEEA61F7E.png)
+![](../../static/img/webpack/9768F782-67E1-44d9-81B0-5AFA58D09783.png)
+![](../../static/img/webpack/4DDD72B4-A36C-4912-9800-4F24198AC31B.png)
+
+## Tree Shaking(删除无效代码)
+
+`mode:'production'`开启 Tree Shaking
+
+ES6 module 才支持 tree-shaking  
+commonjs 不不支持
+
+### 为什么 ES6Module 可以实现 Tree Shaking 而 Commonjs 不行
+
+- ES6Module 静态引入，编译时引入
+- Commonjs 动态引入，执行时引入
+- 只有 ES6Module 才能静态分析，直线 Tree Shaking
+
+webpack 打包的过程是代码的分析和编译的过程，还没有真正的执行，是静态分析，要把无用的代码删掉，打包成线上的代码在运行。在使用 Tree Shaking 的时候，前提是代码需要固定，不能有逻辑
+
+## Scope Hositing
+
+生产环境默认开启 Scope Hoisting  
+`mode:'production'`
+
+![](../../static/img/webpack/EC2418E9-5A4E-485a-A386-2BDD9FD189EF.png)
+![](../../static/img/webpack/BA295959-F7CE-4c48-AD57-EFA37E09C2E6.png)
+
+### 什么是 Scope Hoisting
+
+> 直译：作用域提升，webpack3 就有了  
+> 代码体积更小，运行更快  
+> 创建函数的作用域少，内存开销也随之变小  
+> 代码可读性更好
+
+### Scope Hoisting 原理
+
+分析出模块之间的依赖关系，尽可能将打散的模块合并到一个函数中，前提是不能造成代码冗余。因此，**只有那些被引用一次的模块才能被合并**。  
+由于 Scope Hoisting 需要分析出模块之间的依赖关系，因此源码**必须采用 ES6 模块化语法**，不然她讲无法生效。和使用 TreeShaking 中介绍的类似
+
+### 启动 Scope Hoisting
+
+第一种：`mode:'production'`
+
+第二种：手动启动
+在 webpack 中已经内置 Scope Hoisting,只需要配置 ModuleConcatenationPlugin 插件即可
+
+```javascript
+/* eslint-disable */
+const path = require("path");
+const srcPath = path.join(__dirname, "..", "src");
+const distPath = path.join(__dirname, "..", "dist");
+const webpack = require("webpack");
+
+// 考虑到 Scope Hoisting 以来 ES6 模块化语法，而现在很多 npm 包的第三方库还是使用 CommonJS 语法，
+// 为了充分发挥 Scope Hoisting 效果，我们可以增加以下 mainFields 配置：
+module.exports = {
+  resolve: {
+    // 针对 npm 中的第三方模块优先采用 jsnext:main 中指向的 ES6 模块化语法的文件
+    mainFields: ["jsnext:main", "browser", "main"],
+  },
+  plugins: [new webpack.optimize.ModuleConcatenationPlugin()],
+};
+
+//  针对非 ES6 模块化语法的代码，webpack 会降级处理不使用 Scope Hoisting 优化，
+//  我们可以在 webpack 命令上增加 --display-optimization-bailout 参数，在输出的日志查看哪些代码做了降级处理：
+
+// package.json
+// {
+//     // ...
+//     "scripts": {
+//       "build": "webpack --display-optimization-bailout"
+//     }
+//   }
+
+// index.js
+import str from "./main.js";
+
+const { name } = require("./no-es6.js");
+// main.js
+export default "scope hoisting";
+// no-es6.js
+module.exports = {
+  name: "scope hoisting",
+};
+```

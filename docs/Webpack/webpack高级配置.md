@@ -1077,4 +1077,624 @@ module.exports = {
 
 vue-loader
 
-### webpack 性能优化
+## webpack 性能优化
+
+- 优化打包构建速度，开发和体验效率
+- 优化产出代码，产品性能
+
+常用的优化手段
+
+- 优化 babel-loader
+- Ignore-Plugin 忽略
+- noParse 不需要处理的
+- happyPack 开启多进程打包
+- ParallelUglifyPlugin 开启多进程压缩 js
+- DllPlugin 对于第三方的包在生产环境没必要每次都编译
+- 自动刷新
+- 热更新
+
+### 优化 babel-loader
+
+![](../../static/img/webpack/ED44DD81-F571-4175-87B2-F16E611292AF.png)
+
+webpack.common.js
+
+```javascript
+/* eslint-disable */
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const srcPath = path.join(__dirname, "..", "src");
+const distPath = path.join(__dirname, "..", "dist");
+
+module.exports = {
+  entry: {
+    // index: path.join(srcPath, 'index.js'),
+    // other: path.join(srcPath, 'other.js')
+    main: path.join(srcPath, "scophosting/main.js"),
+  },
+  module: {
+    // jquery|react.min.js 没有采取模块化的打包
+    // 忽略对 react.min.js 递归解析处理
+    // noParse: /jquery.min.js|react.min.js/,
+    rules: [
+      // babel-loader
+      {
+        test: /\.js$/,
+        // cacheDirectory 对于es6，编译过的不用重新编译
+        use: ["babel-loader?cacheDirectory"],
+        // include和 exclude是排除范围
+        include: srcPath,
+        exclude: /node_modules/,
+      },
+    ],
+  },
+  plugins: [
+    // new HtmlWebpackPlugin({
+    //     template: path.join(srcPath, 'index.html'),
+    //     filename: 'index.html'
+    // })
+
+    // 多入口 - 生成 index.html
+    new HtmlWebpackPlugin({
+      template: path.join(srcPath, "index.html"),
+      filename: "index.html",
+      // chunks 表示该页面要引用哪些 chunk （即上面的 index 和 other），默认全部引用
+      // chunks: ['index', 'vendor', 'common']  // 要考虑代码分割
+    }),
+    // 多入口 - 生成 other.html
+    // new HtmlWebpackPlugin({
+    //     template: path.join(srcPath, 'other.html'),
+    //     filename: 'other.html',
+    //     chunks: ['other', 'vendor', 'common']  // 考虑代码分割
+    // })
+  ],
+};
+```
+
+### happyPack 开启多进程打包
+
+js 是单线程的,happyPack 可以开启多进程的打包  
+可以提高构架速度
+
+![](../../static/img/webpack/C137425A-EC5D-4324-BA52-5B270FD7A4FB.png)
+
+webpack.prod.js
+
+```javascript
+/* eslint-disable */
+const path = require("path");
+const webpack = require("webpack");
+const { merge } = require("webpack-merge");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const TerserJSPlugin = require("terser-webpack-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const HappyPack = require("happypack");
+const ParallelUglifyPlugin = require("webpack-parallel-uglify-plugin");
+const webpackCommonConf = require("./webpack.common.js");
+const srcPath = path.join(__dirname, "..", "src");
+const distPath = path.join(__dirname, "..", "dist");
+module.exports = merge(webpackCommonConf, {
+  mode: "production",
+  // mode: 'development',
+  output: {
+    // filename: 'bundle.[contentHash:8].js',  // 打包代码时，加上 hash 戳
+    filename: "[name].[contenthash:8].js", // name 即多入口时 entry 的 key
+    path: distPath,
+    publicPath: "http://cdn.baidu.com", // 修改所有静态文件 url 的前缀（如 cdn 域名），这里暂时用不到
+  },
+  module: {
+    rules: [
+      // js
+      {
+        test: /\.js$/,
+        // use: ['babel-loader?cacheDirectory'],
+        // 把对 .js 文件的处理转交给 id 为 babel 的 HappyPack 实例
+        use: ["happypack/loader?id=babel"],
+        include: srcPath,
+        // exclude: /node_modules/
+      },
+      // 图片 - 考虑 base64 编码的情况
+      {
+        test: /\.(png|jpg|jpeg|gif)$/,
+        use: {
+          loader: "url-loader",
+          options: {
+            // 小于 5kb 的图片用 base64 格式产出
+            // 否则，依然延用 file-loader 的形式，产出 url 格式
+            limit: 5 * 1024,
+
+            // 打包到 img 目录下
+            outputPath: "/img1/",
+
+            // 设置图片的 cdn 地址（也可以统一在外面的 output 中设置，那将作用于所有静态资源）
+            // publicPath: 'http://cdn.test.com'
+          },
+        },
+      },
+      // 抽离 css
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader, // 注意，这里不再用 style-loader
+          "css-loader",
+          "postcss-loader",
+        ],
+      },
+      // 抽离 less
+      {
+        test: /\.less$/,
+        use: [
+          MiniCssExtractPlugin.loader, // 注意，这里不再用 style-loader
+          "css-loader",
+          "less-loader",
+          "postcss-loader",
+        ],
+      },
+    ],
+  },
+  plugins: [
+    new CleanWebpackPlugin(), // 会默认清空 output.path 文件夹
+    new webpack.DefinePlugin({
+      // window.ENV = 'production'
+      ENV: JSON.stringify("production"),
+    }),
+
+    // 抽离 css 文件
+    new MiniCssExtractPlugin({
+      filename: "css/main.[contenthash:8].css",
+    }),
+
+    // 忽略 moment 下的 /locale 目录
+    new webpack.IgnorePlugin({
+      resourceRegExp: /^\.\/locale$/,
+      contextRegExp: /moment/,
+    }),
+    // happyPack 开启多进程打包
+    new HappyPack({
+      // 用唯一的标识符 id 来代表当前的 HappyPack 是用来处理一类特定的文件
+      id: "babel",
+      // 如何处理 .js 文件，用法和 Loader 配置中一样
+      use: ["babel-loader?cacheDirectory"],
+    }),
+
+    // 使用 ParallelUglifyPlugin 并行压缩输出的 JS 代码
+    // new ParallelUglifyPlugin({
+    //     // 传递给 UglifyJS 的参数
+    //     // （还是使用 UglifyJS 压缩，只不过帮助开启了多进程）
+    //     uglifyJS: {
+    //         output: {
+    //             beautify: false, // 最紧凑的输出
+    //             comments: false, // 删除所有的注释
+    //         },
+    //         compress: {
+    //             // 删除所有的 `console` 语句，可以兼容ie浏览器
+    //             drop_console: true,
+    //             // 内嵌定义了但是只用到一次的变量
+    //             collapse_vars: true,
+    //             // 提取出出现多次但是没有定义成变量去引用的静态值
+    //             reduce_vars: true,
+    //         }
+    //     }
+    // })
+  ],
+
+  optimization: {
+    // 压缩 css
+    minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
+
+    // 分割代码块
+    splitChunks: {
+      chunks: "all",
+      /**
+             * initial 入口chunk，对于异步导入的文件不处理
+                async 异步chunk，只对异步导入的文件处理
+                all 全部chunk
+             */
+
+      // 缓存分组
+      cacheGroups: {
+        // 第三方模块
+        vendor: {
+          name: "vendor", // chunk 名称
+          priority: 1, // 权限更高，优先抽离，重要！！！
+          test: /node_modules/,
+          minSize: 0, // 大小限制
+          minChunks: 1, // 最少复用过几次
+        },
+
+        // 公共的模块
+        common: {
+          name: "common", // chunk 名称
+          priority: 0, // 优先级
+          minSize: 0, // 公共模块的大小限制
+          minChunks: 2, // 公共模块最少复用过几次
+        },
+      },
+    },
+  },
+});
+```
+
+### ParallelUglifyPlugin 开启多进程压缩 js
+
+webpack 内置了 Uglify 工具压缩 js  
+js 是单线程，开启多进程压缩更快
+
+![](../../static/img/webpack/DCFC7C86-9C88-4f73-9EB3-4B1C7AE9C060.png)
+
+```javascript
+let a = 10;
+let b = 20;
+let c = a + b;
+// 开启多进程后会直接将表达式计算好,在压缩的时候就计算好了
+let c = 30;
+```
+
+webpack.prod.js
+
+```javascript
+/* eslint-disable */
+const path = require("path");
+const webpack = require("webpack");
+const { merge } = require("webpack-merge");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const TerserJSPlugin = require("terser-webpack-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const HappyPack = require("happypack");
+const ParallelUglifyPlugin = require("webpack-parallel-uglify-plugin");
+const webpackCommonConf = require("./webpack.common.js");
+const srcPath = path.join(__dirname, "..", "src");
+const distPath = path.join(__dirname, "..", "dist");
+module.exports = merge(webpackCommonConf, {
+  mode: "production",
+  // mode: 'development',
+  output: {
+    // filename: 'bundle.[contentHash:8].js',  // 打包代码时，加上 hash 戳
+    filename: "[name].[contenthash:8].js", // name 即多入口时 entry 的 key
+    path: distPath,
+    publicPath: "http://cdn.baidu.com", // 修改所有静态文件 url 的前缀（如 cdn 域名），这里暂时用不到
+  },
+  module: {
+    rules: [
+      // js
+      {
+        test: /\.js$/,
+        // use: ['babel-loader?cacheDirectory'],
+        // 把对 .js 文件的处理转交给 id 为 babel 的 HappyPack 实例
+        use: ["happypack/loader?id=babel"],
+        include: srcPath,
+        // exclude: /node_modules/
+      },
+      // 图片 - 考虑 base64 编码的情况
+      {
+        test: /\.(png|jpg|jpeg|gif)$/,
+        use: {
+          loader: "url-loader",
+          options: {
+            // 小于 5kb 的图片用 base64 格式产出
+            // 否则，依然延用 file-loader 的形式，产出 url 格式
+            limit: 5 * 1024,
+
+            // 打包到 img 目录下
+            outputPath: "/img1/",
+
+            // 设置图片的 cdn 地址（也可以统一在外面的 output 中设置，那将作用于所有静态资源）
+            // publicPath: 'http://cdn.test.com'
+          },
+        },
+      },
+      // 抽离 css
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader, // 注意，这里不再用 style-loader
+          "css-loader",
+          "postcss-loader",
+        ],
+      },
+      // 抽离 less
+      {
+        test: /\.less$/,
+        use: [
+          MiniCssExtractPlugin.loader, // 注意，这里不再用 style-loader
+          "css-loader",
+          "less-loader",
+          "postcss-loader",
+        ],
+      },
+    ],
+  },
+  plugins: [
+    new CleanWebpackPlugin(), // 会默认清空 output.path 文件夹
+    new webpack.DefinePlugin({
+      // window.ENV = 'production'
+      ENV: JSON.stringify("production"),
+    }),
+
+    // 抽离 css 文件
+    new MiniCssExtractPlugin({
+      filename: "css/main.[contenthash:8].css",
+    }),
+
+    // 忽略 moment 下的 /locale 目录
+    new webpack.IgnorePlugin({
+      resourceRegExp: /^\.\/locale$/,
+      contextRegExp: /moment/,
+    }),
+    // happyPack 开启多进程打包
+    new HappyPack({
+      // 用唯一的标识符 id 来代表当前的 HappyPack 是用来处理一类特定的文件
+      id: "babel",
+      // 如何处理 .js 文件，用法和 Loader 配置中一样
+      use: ["babel-loader?cacheDirectory"],
+    }),
+
+    // 使用 ParallelUglifyPlugin 并行压缩输出的 JS 代码
+    new ParallelUglifyPlugin({
+      // 传递给 UglifyJS 的参数
+      // （还是使用 UglifyJS 压缩，只不过帮助开启了多进程）
+      uglifyJS: {
+        output: {
+          beautify: false, // 最紧凑的输出
+          comments: false, // 删除所有的注释
+        },
+        compress: {
+          // 删除所有的 `console` 语句，可以兼容ie浏览器
+          drop_console: true,
+          // 内嵌定义了但是只用到一次的变量
+          collapse_vars: true,
+          // 提取出出现多次但是没有定义成变量去引用的静态值
+          reduce_vars: true,
+        },
+      },
+    }),
+  ],
+
+  optimization: {
+    // 压缩 css
+    minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
+
+    // 分割代码块
+    splitChunks: {
+      chunks: "all",
+      /**
+             * initial 入口chunk，对于异步导入的文件不处理
+                async 异步chunk，只对异步导入的文件处理
+                all 全部chunk
+             */
+
+      // 缓存分组
+      cacheGroups: {
+        // 第三方模块
+        vendor: {
+          name: "vendor", // chunk 名称
+          priority: 1, // 权限更高，优先抽离，重要！！！
+          test: /node_modules/,
+          minSize: 0, // 大小限制
+          minChunks: 1, // 最少复用过几次
+        },
+
+        // 公共的模块
+        common: {
+          name: "common", // chunk 名称
+          priority: 0, // 优先级
+          minSize: 0, // 公共模块的大小限制
+          minChunks: 2, // 公共模块最少复用过几次
+        },
+      },
+    },
+  },
+});
+```
+
+### 关于多进程打包
+
+- 项目比较大，打包比较慢，开启多进程可以提高打包速度
+- 项目比较小，本身打包就很快，开启多进程反而降低速度（进程开销）
+- 在实际应用中，应按需使用
+
+### Ignore-Plugin 避免引入无用模块
+
+> 项目中引入处理时间的 library import moment from 'moment'
+> 这个时间是有国际化的
+> 默认会引入所有语言的 js 代码，代码过大
+> 如何只引入我们需要的模块
+
+index.js
+
+```javascript
+import moment from "moment";
+import "moment/locale/zh-cn"; // 自己手动引入国际化包
+moment.locale("zh-cn"); // 设置语言是中文
+console.log("locale---", moment.locale());
+console.log("date---", moment().format("ll"));
+```
+
+webpack.prod.js
+
+```javascript
+/* eslint-disable */
+const path = require("path");
+const webpack = require("webpack");
+const { merge } = require("webpack-merge");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const TerserJSPlugin = require("terser-webpack-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const HappyPack = require("happypack");
+const ParallelUglifyPlugin = require("webpack-parallel-uglify-plugin");
+const webpackCommonConf = require("./webpack.common.js");
+const srcPath = path.join(__dirname, "..", "src");
+const distPath = path.join(__dirname, "..", "dist");
+module.exports = merge(webpackCommonConf, {
+  mode: "production",
+  // mode: 'development',
+  output: {
+    // filename: 'bundle.[contentHash:8].js',  // 打包代码时，加上 hash 戳
+    filename: "[name].[contenthash:8].js", // name 即多入口时 entry 的 key
+    path: distPath,
+    // publicPath: 'http://cdn.baidu.com'  // 修改所有静态文件 url 的前缀（如 cdn 域名），这里暂时用不到
+  },
+  module: {
+    rules: [
+      // js
+      // {
+      //     test: /\.js$/,
+      //     // use: ['babel-loader?cacheDirectory'],
+      //     // 把对 .js 文件的处理转交给 id 为 babel 的 HappyPack 实例
+      //     use: ['happypack/loader?id=babel'],
+      //     include: srcPath,
+      //     // exclude: /node_modules/
+      // },
+      // 图片 - 考虑 base64 编码的情况
+      {
+        test: /\.(png|jpg|jpeg|gif)$/,
+        use: {
+          loader: "url-loader",
+          options: {
+            // 小于 5kb 的图片用 base64 格式产出
+            // 否则，依然延用 file-loader 的形式，产出 url 格式
+            limit: 5 * 1024,
+
+            // 打包到 img 目录下
+            outputPath: "/img1/",
+
+            // 设置图片的 cdn 地址（也可以统一在外面的 output 中设置，那将作用于所有静态资源）
+            // publicPath: 'http://cdn.test.com'
+          },
+        },
+      },
+      // 抽离 css
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader, // 注意，这里不再用 style-loader
+          "css-loader",
+          "postcss-loader",
+        ],
+      },
+      // 抽离 less
+      {
+        test: /\.less$/,
+        use: [
+          MiniCssExtractPlugin.loader, // 注意，这里不再用 style-loader
+          "css-loader",
+          "less-loader",
+          "postcss-loader",
+        ],
+      },
+    ],
+  },
+  plugins: [
+    new CleanWebpackPlugin(), // 会默认清空 output.path 文件夹
+    new webpack.DefinePlugin({
+      // window.ENV = 'production'
+      ENV: JSON.stringify("production"),
+    }),
+
+    // 抽离 css 文件
+    new MiniCssExtractPlugin({
+      filename: "css/main.[contenthash:8].css",
+    }),
+
+    // 忽略 moment 下的 /locale 目录
+    new webpack.IgnorePlugin({
+      resourceRegExp: /^\.\/locale$/,
+      contextRegExp: /moment/,
+    }),
+    // happyPack 开启多进程打包
+    // new HappyPack({
+    //     // 用唯一的标识符 id 来代表当前的 HappyPack 是用来处理一类特定的文件
+    //     id: 'babel',
+    //     // 如何处理 .js 文件，用法和 Loader 配置中一样
+    //     use: ['babel-loader?cacheDirectory']
+    // }),
+
+    // 使用 ParallelUglifyPlugin 并行压缩输出的 JS 代码
+    // new ParallelUglifyPlugin({
+    //     // 传递给 UglifyJS 的参数
+    //     // （还是使用 UglifyJS 压缩，只不过帮助开启了多进程）
+    //     uglifyJS: {
+    //         output: {
+    //             beautify: false, // 最紧凑的输出
+    //             comments: false, // 删除所有的注释
+    //         },
+    //         compress: {
+    //             // 删除所有的 `console` 语句，可以兼容ie浏览器
+    //             drop_console: true,
+    //             // 内嵌定义了但是只用到一次的变量
+    //             collapse_vars: true,
+    //             // 提取出出现多次但是没有定义成变量去引用的静态值
+    //             reduce_vars: true,
+    //         }
+    //     }
+    // })
+  ],
+
+  optimization: {
+    // 压缩 css
+    minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
+
+    // 分割代码块
+    // splitChunks: {
+    //     chunks: 'all',
+    //     /**
+    //      * initial 入口chunk，对于异步导入的文件不处理
+    //         async 异步chunk，只对异步导入的文件处理
+    //         all 全部chunk
+    //      */
+
+    //     // 缓存分组
+    //     cacheGroups: {
+    //         // 第三方模块
+    //         vendor: {
+    //             name: 'vendor', // chunk 名称
+    //             priority: 1, // 权限更高，优先抽离，重要！！！
+    //             test: /node_modules/,
+    //             minSize: 0,  // 大小限制
+    //             minChunks: 1  // 最少复用过几次
+    //         },
+
+    //         // 公共的模块
+    //         common: {
+    //             name: 'common', // chunk 名称
+    //             priority: 0, // 优先级
+    //             minSize: 0,  // 公共模块的大小限制
+    //             minChunks: 2  // 公共模块最少复用过几次
+    //         }
+    //     }
+    // }
+  },
+});
+```
+
+![](../../static/img/webpack/F20DA171-03E0-4496-BB62-FDE01D38AFCC.png)
+![](../../static/img/webpack/4818ABCF-5649-4c1f-A13F-6E2189B4C0BA.png)
+
+> 只引入需要的部分
+
+### noParse 避免重复打包
+
+![](../../static/img/webpack/E53AAFA2-A768-4cf3-87CF-64D7115A9B8E.png)
+
+### Ignore-Plugin 和 noParse 的区别
+
+- Ignore-Plugin 直接不引入，代码中没有
+- noParse 引入，但不打包
+
+## module,chunk,bundle 的区别
+
+- module 是各个源码文件（一个文件就是一个 module），webpack 中一切模块
+- chunk 是多模块合成的，如 entry，import() splitChunk（chunk 是 webpack 内存中的一个概念，webpack 中一切还没有处理的 module 的一个集合）
+- bundle 是最终输出的文件（通过 webpack 的处理最终输出的文件）
+- 一个 chunk 对应一个 bundle，一个 chunk 可能包含多个 module
+
+![](../../static/img/webpack/77C99C71-1178-4b4e-852A-394BDFCFDAF4.png)
+
+## 自动刷新和热更新
+
+### 自动刷新
+
+### 热更新

@@ -1,6 +1,6 @@
 react 中 JSX 的渲染原理  
-JSX 通过 Babel 转换成 ReactElement(也就是 js 对象，虚拟 dom)，这一步主要是为了之后虚拟 dom 和真实 dom 进行比较，只更新改变的部分，减少性能消耗
-由于浏览器在渲染的时候只识别（Html,css,js），不识别 jsx，因此需要将虚拟 dom 转换为真实的 dom（通过 ReactDom.render(<Component />,document.getElementById('root'))方法）
+`JSX` 通过 `Babel` 转换成 `ReactElement`(也就是 `js` 对象，虚拟 `dom`)，这一步主要是为了之后虚拟 `dom` 和真实 `dom` 进行比较，只更新改变的部分，减少性能消耗
+由于浏览器在渲染的时候只识别`（Html,css,js）`，不识别 `jsx`，因此需要将虚拟 `dom` 转换为真实的 `dom``（通过 ReactDom.render(<Component />,document.getElementById('root'))方法）`
 
 ```jsx
 render(){

@@ -1,4 +1,30 @@
-![](https://static.vue-js.com/5842e560-67b6-11eb-85f6-6fac77c0c9b3.png)
+原型方法  
+栈方法：push/pop  
+队列方法：unshift/shift  
+重排序方法：reverse/sort  
+操作方法：concat/slice/splice  
+转换方法：join **toString**  
+位置方法：indexOf/lastIndexOf 返回索引,没有返回-1  
+迭代方法：forEach/filter/map/some/every  
+归并方法：reduce/reduceRight 第一个回调函数的参数是 a,b,index,array 第二个参数是初始值  
+扁平化方法：flat （Infinity） includes（返回布尔值）
+
+静态方法  
+检测方法：Array.isArray 静态方法  
+Array.from——ES6——用于将对象转为真正的数组(类数组转数组)
+
+concat slice join toString flat 不修改原数组
+
+indexof 没有查找到返回-1  
+foeEach 没有返回值  
+some every includes 返回布尔值  
+reduce 返回计算的值  
+find 返回第一个匹配的元素  
+给定条件，返回数组中第一个满足该条件的值，之后的值不再进行检测，当没有找到满足该条件的值时，返回 undefined
+
+```jsx
+people.find((element, index, array) => element.age < 28); // // {name: "Matt", age: 27}
+```
 
 ## 一、操作方法
 

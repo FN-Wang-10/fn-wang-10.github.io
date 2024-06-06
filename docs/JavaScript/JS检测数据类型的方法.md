@@ -1,14 +1,31 @@
----
-sidebar_position: 4
-tags:
-  - JavaScript
-  - typeof
-  - instanceof
-  - constructor
-  - toString
----
+1.typeOf 检测基本类型和函数  
+2.instanceOf 检测引用数据类型，检测基本类型不生效  
+3.constructor 可以检测基本类型和引用类型  
+4.Object.prototype.toString.call 可以检测所用数据类型
 
-## 一、`typeof` 基本判断
+1. typeOf  
+   作用：用于检测基本类型和函数  
+   弊端：检测引用数据类型只会返回 object  
+   语法：typeof 1/""/true/undefined/null/[]/{}/function(){}  
+   返回值(字符串)：'number'/'string'/'boolean'/'undefined'/'object'/'function'
+2. instanceOf  
+   原理：基于原型链去判断，判断左边对象是否是右边构造函数的实例  
+    判断左边对象的原型链 proto 上是否有右边构造函数的 prototype 属性  
+   作用：用于检测引用数据类型  
+   弊端：只能用于检测复杂类型，检测基本类型不会生效  
+   语法：[]/{} instanceOf Array  
+   返回值：true/false
+3. constructor  
+   作用：可以检测基本数据类型和引用数据类型  
+   弊端：把类的原型进行重写，很有可能把之前的 constructor 覆盖，检测出的结果就不准确  
+   语法：('')/(6)/(boolen)/({})/([]).constructor === String/Number/Object/Array  
+   返回值：true/false
+4. Object.prototype.toString.call()  
+   作用：可以检测所用数据类型  
+   语法：Object.prototype.toString.call(''/6/true/undefined/null/{}/[]/)  
+   返回值(字符串)：'[object String/Number/Boolean/Undefined/Null/Object/Array]'
+
+## 一、`typeOf` 基本判断
 
 ```javascript
 typeof a; // undefined

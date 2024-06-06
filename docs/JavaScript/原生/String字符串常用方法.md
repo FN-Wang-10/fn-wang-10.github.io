@@ -1,29 +1,24 @@
----
-sidebar_position: 20
-tags:
-  - String
-  - concat
-  - slice
-  - substr
-  - substring
-  - trim
-  - trimLeft
-  - trimRight
-  - repeat
-  - padEnd
-  - toLowerCase
-  - toUpperCase
-  - charAt
-  - indexOf
-  - startWith
-  - includes
-  - split
-  - match
-  - replace
-  - search
----
+静态方法  
+String.fromChatCode 参数：unicode 编码 返回值：转换后的字符串
 
-我们也可将字符串常用的操作方法归纳为 ***增、删、改、查***，需要知道字符串的特点是一旦创建了，就不可变
+字符串动态方法  
+chatAt 参数：索引 返回值：索引对应的内容 没有返回空字符串  
+chatCodeAt 参数：索引 返回值：索引对应的内容的 unicode 编码  
+substring/substr 截取  
+toUpperCase/toLowerCase 转大小写  
+trim 删除字符串前后的空格  
+split 转数组  
+和数组一样的方法  
+slice  
+concat  
+indexOf/lastIndexOf  
+includes  
+和正则相关的方法  
+replace 仅替换第一个出现的字符。  
+match 参数：字符或字符串 返回值：数组  
+search 没有返回-1  
+核心方法  
+substring/split/toUpperCase/toLowerCase/replace
 
 ## 增
 
@@ -38,8 +33,8 @@ tags:
 用于将一个或多个字符串拼接成一个新字符串
 
 ```javascript
-let stringValue = 'hello ';
-let result = stringValue.concat('world');
+let stringValue = "hello ";
+let result = stringValue.concat("world");
 console.log(result); // "hello world"
 console.log(stringValue); // "hello"
 ```
@@ -57,7 +52,7 @@ console.log(stringValue); // "hello"
 > 语法：`str.slice(beginIndex[, endIndex])`
 
 ```javascript
-const str = 'The quick brown fox jumps over the lazy dog.';
+const str = "The quick brown fox jumps over the lazy dog.";
 
 console.log(str.slice(31));
 // Expected output: "the lazy dog."
@@ -70,9 +65,7 @@ console.log(str.slice(-4));
 
 console.log(str.slice(-9, -5));
 // Expected output: "lazy"
-
 ```
-
 
 ### `substr()`
 
@@ -87,14 +80,13 @@ console.log(str.slice(-9, -5));
 ```javascript
 var str = "abcdefghij";
 
-console.log("(1,2): "    + str.substr(1,2));   // (1,2): bc
-console.log("(-3,2): "   + str.substr(-3,2));  // (-3,2): hi
-console.log("(-3): "     + str.substr(-3));    // (-3): hij
-console.log("(1): "      + str.substr(1));     // (1): bcdefghij
-console.log("(-20, 2): " + str.substr(-20,2)); // (-20, 2): ab
-console.log("(20, 2): "  + str.substr(20,2));  // (20, 2):
+console.log("(1,2): " + str.substr(1, 2)); // (1,2): bc
+console.log("(-3,2): " + str.substr(-3, 2)); // (-3,2): hi
+console.log("(-3): " + str.substr(-3)); // (-3): hij
+console.log("(1): " + str.substr(1)); // (1): bcdefghij
+console.log("(-20, 2): " + str.substr(-20, 2)); // (-20, 2): ab
+console.log("(20, 2): " + str.substr(20, 2)); // (20, 2):
 ```
-
 
 ### `substring()`
 
@@ -106,26 +98,26 @@ console.log("(20, 2): "  + str.substr(20,2));  // (20, 2):
 var anyString = "Mozilla";
 
 // 输出 "Moz"
-console.log(anyString.substring(0,3));
-console.log(anyString.substring(3,0));
-console.log(anyString.substring(3,-3));
-console.log(anyString.substring(3,NaN));
-console.log(anyString.substring(-2,3));
-console.log(anyString.substring(NaN,3));
+console.log(anyString.substring(0, 3));
+console.log(anyString.substring(3, 0));
+console.log(anyString.substring(3, -3));
+console.log(anyString.substring(3, NaN));
+console.log(anyString.substring(-2, 3));
+console.log(anyString.substring(NaN, 3));
 
 // 输出 "lla"
-console.log(anyString.substring(4,7));
-console.log(anyString.substring(7,4));
+console.log(anyString.substring(4, 7));
+console.log(anyString.substring(7, 4));
 
 // 输出 ""
-console.log(anyString.substring(4,4));
+console.log(anyString.substring(4, 4));
 
 // 输出 "Mozill"
-console.log(anyString.substring(0,6));
+console.log(anyString.substring(0, 6));
 
 // 输出 "Mozilla"
-console.log(anyString.substring(0,7));
-console.log(anyString.substring(0,10));
+console.log(anyString.substring(0, 7));
+console.log(anyString.substring(0, 10));
 ```
 
 ## 改
@@ -137,7 +129,7 @@ console.log(anyString.substring(0,10));
 删除前、后或前后所有空格符，再返回新的字符串
 
 ```javascript
-let stringValue = ' hello world ';
+let stringValue = " hello world ";
 let trimmedStringValue = stringValue.trim();
 console.log(stringValue); // " hello world "
 console.log(trimmedStringValue); // "hello world"
@@ -148,7 +140,7 @@ console.log(trimmedStringValue); // "hello world"
 接收一个整数参数，表示要将字符串复制多少次，然后返回拼接所有副本后的结果
 
 ```javascript
-let stringValue = 'na ';
+let stringValue = "na ";
 let copyResult = stringValue.repeat(2); // na na
 ```
 
@@ -157,9 +149,9 @@ let copyResult = stringValue.repeat(2); // na na
 复制字符串，如果小于指定长度，则在相应一边填充字符，直至满足长度条件
 
 ```javascript
-let stringValue = 'foo';
+let stringValue = "foo";
 console.log(stringValue.padStart(6)); // " foo"
-console.log(stringValue.padStart(9, '.')); // "......foo"
+console.log(stringValue.padStart(9, ".")); // "......foo"
 ```
 
 ### `toLowerCase()`、 `toUpperCase()`
@@ -167,7 +159,7 @@ console.log(stringValue.padStart(9, '.')); // "......foo"
 大小写转化
 
 ```javascript
-let stringValue = 'hello world';
+let stringValue = "hello world";
 console.log(stringValue.toUpperCase()); // "HELLO WORLD"
 console.log(stringValue.toLowerCase()); // "hello world"
 ```
@@ -181,7 +173,7 @@ console.log(stringValue.toLowerCase()); // "hello world"
 返回给定索引位置的字符，由传给方法的整数参数指定
 
 ```javascript
-let message = 'abcde';
+let message = "abcde";
 console.log(message.charAt(2)); // "c"
 ```
 
@@ -190,8 +182,8 @@ console.log(message.charAt(2)); // "c"
 从字符串开头去搜索传入的字符串，并返回位置（如果没找到，则返回 -1 ）
 
 ```javascript
-let stringValue = 'hello world';
-console.log(stringValue.indexOf('o')); // 4
+let stringValue = "hello world";
+console.log(stringValue.indexOf("o")); // 4
 ```
 
 ### `startWith()`、`includes()`
@@ -199,11 +191,11 @@ console.log(stringValue.indexOf('o')); // 4
 从字符串中搜索传入的字符串，并返回一个表示是否包含的布尔值
 
 ```javascript
-let message = 'foobarbaz';
-console.log(message.startsWith('foo')); // true
-console.log(message.startsWith('bar')); // false
-console.log(message.includes('bar')); // true
-console.log(message.includes('qux')); // false
+let message = "foobarbaz";
+console.log(message.startsWith("foo")); // true
+console.log(message.startsWith("bar")); // false
+console.log(message.includes("bar")); // true
+console.log(message.includes("qux")); // false
 ```
 
 ## 转换
@@ -213,8 +205,8 @@ console.log(message.includes('qux')); // false
 把字符串按照指定的分割符，拆分成数组中的每一项
 
 ```javascript
-let str = '12+23+34';
-let arr = str.split('+'); // [12,23,34]
+let str = "12+23+34";
+let arr = str.split("+"); // [12,23,34]
 ```
 
 ## 模板匹配
@@ -226,7 +218,7 @@ let arr = str.split('+'); // [12,23,34]
 接收一个参数，可以是一个正则表达式字符串，也可以是一个`RegExp`对象，返回数组
 
 ```javascript
-let text = 'cat, bat, sat, fat';
+let text = "cat, bat, sat, fat";
 let pattern = /.at/;
 let matches = text.match(pattern);
 console.log(matches[0]); // "cat"
@@ -237,7 +229,7 @@ console.log(matches[0]); // "cat"
 接收一个参数，可以是一个正则表达式字符串，也可以是一个`RegExp`对象，找到则返回匹配索引，否则返回 -1
 
 ```javascript
-let text = 'cat, bat, sat, fat';
+let text = "cat, bat, sat, fat";
 let pos = text.search(/at/);
 console.log(pos); // 1
 ```
@@ -247,7 +239,7 @@ console.log(pos); // 1
 接收两个参数，第一个参数为匹配的内容，第二个参数为替换的元素（可用函数）
 
 ```javascript
-let text = 'cat, bat, sat, fat';
-let result = text.replace('at', 'ond');
+let text = "cat, bat, sat, fat";
+let result = text.replace("at", "ond");
 console.log(result); // "cond, bat, sat, fat"
 ```

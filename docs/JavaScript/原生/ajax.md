@@ -1,5 +1,3 @@
-![](https://static.vue-js.com/a35a2950-7b2a-11eb-ab90-d9ae814b240d.png)
-
 ## 一、是什么
 
 `AJAX `全称(Async Javascript and XML)

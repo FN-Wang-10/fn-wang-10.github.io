@@ -1,4 +1,14 @@
-![](https://static.vue-js.com/880d0010-7a39-11eb-85f6-6fac77c0c9b3.png)
+1. 创建一个空对象
+2. 将对象和构造函数通过原型链连接起来，（将对象的`__proto__`指向构造函数的`prototype`属性）使对象可以访问构造函数上的属性和方法
+   `person.__proto__ = Person.prototype` // 设置原型链
+3. 将构造函数中的 this 绑定到实例对象上
+4. 如果该函数没有返回对象，则返回 this  
+   如果该函数返回一个基本类型，则 this 指向实例对象  
+   如果函数返回一个复杂类型，则 this 指向该函数返回的对象  
+   如果该函数返回 null,则 this 指向实例对象
+
+es6 中的箭头函数是否可以使用 new 实例化？  
+箭头函数、没有 prototype、没有自己的 this 指向、不可以使用 arguments、自然不可以 new。
 
 ## 一、是什么
 

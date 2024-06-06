@@ -1,5 +1,3 @@
-![](https://static.vue-js.com/2ae9dda0-85fa-11eb-ab90-d9ae814b240d.png)
-
 ## 一、是什么
 
 函数缓存，就是将函数运算过的结果进行缓存

@@ -1,3 +1,6 @@
+基本数据类型：String,Number,Boolean,Undefined,Null,Symbol,BigInt  
+引用数据类型(复杂类型)：Object
+
 ## 前言
 
 在`JavaScript`中，我们可以分成两种类型：

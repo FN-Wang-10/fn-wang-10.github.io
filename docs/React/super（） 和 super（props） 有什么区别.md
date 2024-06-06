@@ -1,7 +1,7 @@
-在 React 中，类组件是基于 ES6 的规范实现的，继承 React.Component，因此如果用到 constructor 就必须写 super() 才初始化 this，否则访问不到 this  
-这时候，在调用 super()的时候，我们一般都需要传入 props 作为参数，如果不传进去 React 内部也会将其定义在组件实例中  
-通过 super 关键字实现调用父类，super 代替的是父类的构建函数，使用 super(name)相当于调用 sup.prototype.constructor.call(this,name)  
-`super` 代替的是父类的构建函数
+在 React 中，类组件是基于 ES6 的规范实现的，继承 React.Component，因此如果用到 constructor 就**必须写 super() 才初始化 this，否则访问不到 this**  
+这时候，**在调用 super()的时候，我们一般都需要传入 props 作为参数，如果不传进去 React 内部也会将其定义在组件实例中**  
+**通过 super 关键字实现调用父类，super 代替的是父类的构建函数**，使用 super(name)相当于调用 sup.prototype.constructor.call(this,name)  
+**`super` 代替的是父类的构建函数**
 
 ## 一、ES6 类
 
@@ -36,7 +36,7 @@ jack.printAge(); //输出 : 20
 
 在上面的例子中，可以看到通过 `super` 关键字实现调用父类，`super` 代替的是父类的构建函数，使用 `super(name)` 相当于调用 `sup.prototype.constructor.call(this,name)`
 
-如果在子类中不使用 `super`，关键字，则会引发报错，如下：
+**如果在子类中不使用 `super`，关键字，则会引发报错**，如下：
 
 ![](https://static.vue-js.com/6ab40190-d71c-11eb-85f6-6fac77c0c9b3.png)
 

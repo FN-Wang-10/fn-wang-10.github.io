@@ -17,4 +17,4 @@ store ️ dispatch ️ action ️ reducer
 
 react-redux:  
 connect : 将 store 作为 props 注入  
-provider(破外的): 使 store 在子孙组件的 connect 中能够获取到
+provider: 使 store 在子孙组件的 connect 中能够获取到

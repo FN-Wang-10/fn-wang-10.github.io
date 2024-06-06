@@ -138,7 +138,7 @@ componentDidMount() {
 - 在组件生命周期或 React 合成事件中，setState 是异步
 - 在 setTimeout 或者原生 dom 事件中，setState 是同步
 
-### 三、批量更新
+## 三、批量更新
 
 同样先给出一个例子：
 

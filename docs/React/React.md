@@ -36,6 +36,47 @@
 
 ### 生命周期有哪些不同阶段？每个阶段对应的方法是？
 
+**16.3 版本之前**  
+**初始化**  
+constructor
+
+**创建阶段**  
+UNSAFE_componentWillMount  
+render  
+componentDidMount
+
+**更新阶段**  
+**props 的更新**  
+UNSAFE_componentWillReceiveProps  
+shouldComponentUpdate  
+UNSAFE_componentWillUpdate  
+render  
+componentDidUpdate
+
+**state 的更新**  
+shouldComponentUpdate  
+UNSAFE_componentWillUpdate  
+render  
+componentDidUpdate
+
+**卸载阶段**  
+componentWillUnmount
+
+**16.3 版本之后**  
+**创建阶段**  
+constructor  
+getDerivedStateFromProps  
+render  
+componentDidMount  
+**更新阶段**  
+getDerivedStateFromProps  
+shouldComponentUpdate  
+render  
+getSnapshotBeforeUpdate  
+componentDidUpdate  
+**卸载阶段**  
+componentWillUnmount
+
 主要分成了新的生命周期和旧的生命周期：
 
 - 新版生命周期整体流程如下图所示：

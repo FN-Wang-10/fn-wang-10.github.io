@@ -1,5 +1,3 @@
-![](https://static.vue-js.com/68dccf20-849f-11eb-ab90-d9ae814b240d.png)
-
 ## 一、方式
 
 `javaScript`本地缓存的方法我们主要讲述以下四种：

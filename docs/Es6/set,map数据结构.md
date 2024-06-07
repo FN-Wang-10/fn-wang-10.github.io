@@ -3,13 +3,13 @@ Map 对象是键值对集合，和 JSON 对象类似，但是 key 不仅可以�
 
 ## Set
 
-> ES6 提供了数据结构 Set. 它类似于数组，但是成员的值都是唯一的，没有重复的值。
-> Set 本身是一个构造函数，用来生成 Set 数据结构，数组作为参数。每一项即是键也是值,键和值是相同的。
-> 结构：let s1 = new Set(arr) 类数组 {1, 2, 3, 4, 5}
-> 用 for...of 遍历
-> 参数：数组
-> 返回值：{1, 2, 3, 4, 5} 既不是对象也不是数组
-> size 属性————获取 set 结构的长度
+> ES6 提供了数据结构 Set. 它类似于数组，但是成员的值都是唯一的，没有重复的值。  
+> Set 本身是一个构造函数，用来生成 Set 数据结构，数组作为参数。每一项即是键也是值,键和值是相同的。  
+> 结构：`let s1 = new Set([1, 2, 3, 4, 5])` 类数组 `{1, 2, 3, 4, 5}`  
+> 用 for...of 遍历  
+> 参数：数组  
+> 返回值：`{1, 2, 3, 4, 5}` 既不是对象也不是数组  
+> size 属性————获取 set 结构的长度  
 
 数组去重
 
@@ -23,16 +23,18 @@ object;
 
 原型方法
 
-> add(value)：添加一个新的值到 Set 中。如果 Set 中已经存在该值，则不执行任何操作。
-> delete(value)：删除 Set 中的一个值。如果 Set 中不存在该值，则返回 false。
-> has(value)：判断 Set 中是否包含某个值。
-> get(value)：返回 Set 中指定值的第一个实例。
-> clear()：清空 Set，删除其中所有的值。
-> size：返回 Set 中的值的数量。
+> add(value)：添加一个新的值到 Set 中。如果 Set 中已经存在该值，则不执行任何操作。  
+> delete(value)：删除 Set 中的一个值。如果 Set 中不存在该值，则返回 false。  
+> has(value)：判断 Set 中是否包含某个值。  
+> get(value)：返回 Set 中指定值的第一个实例。  
+> clear()：清空 Set，删除其中所有的值。  
+> size：返回 Set 中的值的数量。  
 
 ## Map
 
-> JavaScript 的对象（Object），只能用字符串当作键,这给它的使用带来了很大的限制。ES6 提供了 Map 数据结构。它类似于对象，但是“键”的范围不限于字符串， 各种类型的值（ 包括对象） 都可以当作键。 Symbol 类型当作 key 输出时 无法确认是同一个 key.
+> JavaScript 的对象（Object），只能用字符串当作键,这给它的使用带来了很大的限制。  
+> ES6 提供了 Map 数据结构。  
+> 它类似于对象，但是“键”的范围不限于字符串， 各种类型的值（ 包括对象） 都可以当作键。 Symbol 类型当作 key 输出时 无法确认是同一个 key.  
 
 ```javascript
 const myMap = new Map([
@@ -46,12 +48,12 @@ console.log(typeof m1); //object
 
 原型方法
 
-> Map.set(key, value)：用于设置 Map 中的一个键值对，其中 key 可以是任何数据类型，value 可以是任何值。
-> Map.get(key)：用于获取 Map 中指定键（key）对应的值（value）。
-> Map.has(key)：用于判断 Map 中是否存在指定键（key）的键值对。
-> Map.delete(key)：用于删除 Map 中指定键（key）的键值对。
-> Map.size：用于获取 Map 中的键值对数量。
-> Map.clear()：用于清空 Map 中的所有键值对。
+> Map.set(key, value)：用于设置 Map 中的一个键值对，其中 key 可以是任何数据类型，value 可以是任何值。  
+> Map.get(key)：用于获取 Map 中指定键（key）对应的值（value）。  
+> Map.has(key)：用于判断 Map 中是否存在指定键（key）的键值对。  
+> Map.delete(key)：用于删除 Map 中指定键（key）的键值对。  
+> Map.size：用于获取 Map 中的键值对数量。  
+> Map.clear()：用于清空 Map 中的所有键值对。  
 
 如果要用一句来描述，我们可以说
 

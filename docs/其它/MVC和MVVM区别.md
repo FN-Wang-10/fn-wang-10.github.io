@@ -1,0 +1,7 @@
+## MVC 和 MVVM 的区别
+
+- MVC 和 MVVM 都是常见的软件架构思想(概念从后端来的)
+- MVC 是由 Model(数据层)、View(视图层)、Controller(控制层) 三部分组成
+- MVC 的通信方式 `view -> controller -> model -> view`
+- MVVM 是由 Model(数据层)、View(视图层)、ViewModel(视图模型层)三部分组成
+- MVVM 的通信方法 `view <-> viewmodel -><- model`

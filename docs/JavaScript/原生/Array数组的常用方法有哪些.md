@@ -307,3 +307,113 @@ let numbers = [1, 2, 3, 4, 5, 4, 3, 2, 1];
 let mapResult = numbers.map((item, index, array) => item * 2);
 console.log(mapResult); // 2,4,6,8,10,8,6,4,2
 ```
+
+### splice() 方法
+
+### 1 定义和用法
+
+splice() 方法用于插入、删除或替换数组的元素。
+
+### 2 语法
+
+```javascript
+arrayObject.splice(index,howmany,element1,.....,elementX)
+```
+
+#### 3 参数 描述
+
+index 必需。规定从何处添加/删除元素。该参数是开始插入和（或）删除的数组元素的下标，必须是数字。
+
+howmany 必需。规定应该删除多少元素。必须是数字，但可以是 “0”。如果未规定此参数，则删除从 index 开始到原数组结尾的所有元素。
+
+element1 可选。规定要添加到数组的新元素。从 index 所指的下标处开始插入。
+
+elementX 可选。可向数组添加若干元素。
+
+### 4 返回值
+
+如果从 arrayObject 中删除了元素，则返回的是含有被删除的元素的数组。
+
+### 5 说明
+
+splice() 方法可删除从 index 处开始的零个或多个元素，并且用参数列表中声明的一个或多个值来替换那些被删除的元素。
+
+### 6 在处理数组的一些方法中，该方法可以发挥它很大的用途：（重点）
+
+a、删除——只需要声明两个参数，就可以从数组中删除任意多个项，这两个参数分别指代要删除的第一项的位置以及要删除的个数  
+例如 arr.splice(0,2)将删除数组 arr 的前两项。
+
+b、插入而不删除——声明三个参数就可以把数据插入到指定的位置，这三个参数是起始位置、0（要删除的数组项的个数）和要插入的项。
+此外，还可以用第四个、第五个或更多个参数指定其他要删除的项。
+
+例如，arr.splice(2,0,"red","blue")将在位置 2 处插入“red”和“blue”。
+
+c、替换并删除——声明三个参数就可以实现数组的删除并插入，这三个参数是起始位置，要删除的项的个数，要插入的内容。
+要插入的项的个数不必等于删除的项的个数。
+
+例如 arr.splice(2,1,"red","blue")将删除数组 arr 在位置 2 处的项并插入“red”和“blue”。
+
+### 7 示例演示：
+
+例子 1  
+在本例中，我们将创建一个新数组，并向其添加一个元素：
+
+```javascript
+
+var arr = new Array(6)
+arr[0] = "George"
+arr[1] = "John"
+arr[2] = "Thomas"
+arr[3] = "James"
+arr[4] = "Adrew"
+arr[5] = "Martin"
+document.write(arr + "
+")
+arr.splice(2,0,"William")
+document.write(arr + "
+")
+输出：
+
+George,John,Thomas,James,Adrew,Martin
+George,John,William,Thomas,James,Adrew,Martin
+```
+
+例子 2  
+在本例中我们将删除位于 index 2 的元素，并添加一个新元素来替代被删除的元素：
+
+```javascript
+var arr = new Array(6)
+arr[0] = "George"
+arr[1] = "John"
+arr[2] = "Thomas"
+arr[3] = "James"
+arr[4] = "Adrew"
+arr[5] = "Martin"
+document.write(arr + "
+")
+arr.splice(2,1,"William")
+document.write(arr)
+```
+
+输出：  
+George,John,Thomas,James,Adrew,MartinGeorge,John,William,James,Adrew,Martin
+
+例子 3  
+在本例中我们将删除从 index 2 (“Thomas”) 开始的三个元素，并添加一个新元素 (“William”) 来替代被删除的元素：
+
+```javascript
+var arr = new Array(6)
+arr[0] = "George"
+arr[1] = "John"
+arr[2] = "Thomas"
+arr[3] = "James"
+arr[4] = "Adrew"
+arr[5] = "Martin"
+document.write(arr + "
+")
+arr.splice(2,3,"William")
+document.write(arr)
+```
+
+输出：  
+George,John,Thomas,James,Adrew,MartinGeorge,John,William,Martin

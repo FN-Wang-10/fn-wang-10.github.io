@@ -1,5 +1,3 @@
-![](https://static.vue-js.com/ccf96f50-929a-11eb-ab90-d9ae814b240d.png)
-
 ## 一、前言
 
 在平常的样式排版中，我们经常遇到将某个模块隐藏的场景

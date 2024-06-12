@@ -1,4 +1,3 @@
-![](https://static.vue-js.com/bd310120-a279-11eb-85f6-6fac77c0c9b3.png)
 
 ## 一、前言
 

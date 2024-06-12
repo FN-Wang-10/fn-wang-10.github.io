@@ -1,5 +1,3 @@
-![](https://static.vue-js.com/62945fd0-a334-11eb-85f6-6fac77c0c9b3.png)
-
 ## 一、背景
 
 Chrome 中文版浏览器会默认设定页面的最小字号是 12px，英文版没有限制

@@ -1,5 +1,3 @@
-![](https://static.vue-js.com/1b2d33e0-a18d-11eb-85f6-6fac77c0c9b3.png)
-
 ## 一、是什么
 
 视差滚动（Parallax Scrolling）是指多层背景以不同的速度移动，形成立体的运动效果，带来非常出色的视觉体验

@@ -1,5 +1,3 @@
-![](https://static.vue-js.com/d58f6df0-9b5e-11eb-ab90-d9ae814b240d.png)
-
 ## 一、是什么
 
 `css`，即层叠样式表（Cascading Style Sheets）的简称，是一种标记语言，由浏览器解释执行用来使页面变得更美观

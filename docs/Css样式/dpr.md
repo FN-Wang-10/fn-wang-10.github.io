@@ -1,5 +1,3 @@
-![](https://static.vue-js.com/c4d9bfd0-91f2-11eb-85f6-6fac77c0c9b3.png)
-
 ## 总结
 
 - css 像素：width:20px

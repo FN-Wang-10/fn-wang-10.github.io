@@ -1,5 +1,3 @@
-![](https://static.vue-js.com/f7dcd330-8fe1-11eb-85f6-6fac77c0c9b3.png)
-
 ## 总结
 
 相同的样式看权重，不同的样式看叠加  
@@ -12,6 +10,57 @@
 1. 继承性
 2. 层叠性
 3. 优先级（权重）
+
+选择器权重  
+内联样式（style） ———— 1000  
+id 选择器（#） ———— 0100/100  
+class 选择器(.) ———— 10 伪类选择器(:) ———— 10  
+标签选择器 ———— 1  
+通配符（\*） ———— 0
+
+群组选择器（,）———— 看自身权重  
+后代选择器（空格） ———— 权重相加  
+子代选择器（>） ———— 权重相加  
+继承的权重 ———— 0  
+!import ———— 最高 99999999999
+
+选择器  
+1.id 选择器（#name）  
+2.class 选择器(.name)  
+3.标签选择器（div）  
+4.群组选择器（div,p）  
+5.后代选择器（#box div），（空格）选择 id 为 box 元素内部所有的 div 元素(包括子孙)  
+6.子选择器（.one>one_1），（>）选择父元素为.one 的所有.one_1 的元素（只包括子，不包括孙）  
+7.相邻兄弟选择器（.one+.two），选择紧接在.one 之后的.two 元素  
+8.兄弟选择器（div~p）查找某一个指定元素的后面的所有兄弟结点  
+9.伪类选择器(:)
+
+1.  :first-child{}
+2.  :last-child{}
+3.  :nth-child(n){},(n 为具体数字)
+4.  first-of-type
+5.  last-of-type{}
+6.  nth-of-type(n){},(n 为具体数字)  
+     :link ：选择未被访问的链接  
+     :visited：选取已被访问的链接  
+     :active：选择活动链接  
+     :hover ：鼠标指针浮动在上面的元素  
+     :focus ：选择具有焦点的  
+     :first-child：父元素的首个子元素
+
+        :first-letter ：用于选取指定选择器的首字母
+        :first-line ：选取指定选择器的首行
+        :before : 选择器在被选元素的内容前面插入内容
+        :after : 选择器在被选元素的内容后面插入内容
+
+        属性选择器
+        [attribute] 选择带有attribute属性的元素
+        [attribute=value] 选择所有使用attribute=value的元素
+        [attribute~=value] 选择attribute属性包含value的元素
+        [attribute|=value]：选择attribute属性以value开头的元素
+
+7.  通配符（\*）  
+    https://blog.csdn.net/m0_57051895/article/details/126451542?ops_request_misc=&request_id=&biz_id=102&utm_term=%E4%BC%AA%E7%B1%BB%E9%80%89%E6%8B%A9%E5%99%A8&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-0-126451542.nonecase&spm=1018.2226.3001.4187
 
 ## 一、选择器
 

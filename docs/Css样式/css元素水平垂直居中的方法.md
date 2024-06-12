@@ -1,5 +1,3 @@
-![](https://static.vue-js.com/7b64c8d0-95f9-11eb-ab90-d9ae814b240d.png)
-
 ## 一、背景
 
 在开发中经常遇到这个问题，即让某个元素的内容在水平和垂直方向上都居中，内容不仅限于文字，可能是图片或其他元素
@@ -71,6 +69,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
+    /* 自身宽高的一半 */
     margin-left: -50px;
     margin-top: -50px;
     width: 100px;

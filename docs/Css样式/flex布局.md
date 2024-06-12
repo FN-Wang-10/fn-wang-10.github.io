@@ -1,4 +1,93 @@
-![](https://static.vue-js.com/ef25b0a0-9837-11eb-ab90-d9ae814b240d.png)
+### display
+
+- flex
+- inline-flex(行内弹性盒，就是横着排)
+
+### 1.flex-direction:（改变弹性盒主轴方向）
+
+- row 水平方向从左到右排 **默认**
+- column 垂直方向从上到下
+- row-reverse 水平方向从右到左
+- column-reverse 垂直方向从下到上
+
+### 2.flex-wrap:（元素是否换行）
+
+- nowrap 不换行 **默认**
+- wrap 换行
+- wrap-reverse 换行并且反向
+
+### 3.flex-flow:flex-direction 和 flex-wrap 的简写
+
+- `flex-flow: <flex-direction> || <flex-wrap>`;
+
+### 4.justify-content:（项目在主轴方向的对齐方式）
+
+- flex-start 从主轴的开始位置排列 **默认**
+- center 在主轴的中间位置排列
+- flex-end 在主轴的结束位置开始排列
+- space-between 项目在容器两边没有间隙，中间平分
+- space-around 项目在容器两边有间隙，中间的间隙是两边的 2 倍
+- space-evenly 项目在容器两边有间隙，中间的间隙和两边的相同（平分间隙）
+
+### 5.align-items:（项目在侧轴上的对其方式）
+
+- stretch 拉伸自身以适应侧轴空间 **默认** 如果项目未设置高度或设为 auto，将占满整个容器的高度
+- flex-start 在侧轴的开始位置排列
+- center 在侧轴的中间位置排列
+- flex-end 在侧轴的结束位置排列
+- baseline 基线对齐
+
+### 6.align-content：（多行子元素在侧轴上的对其方式（一定是多行）一定要换行）
+
+- stretch 拉伸适应容器 **默认**
+- flex-start 在侧轴的开始位置
+- center 在侧轴的中间位置
+- flex-end 在侧轴的结束位置
+- space-between 项目在容器侧轴两边没有间隙，中间间隙平分
+- space-around 项目在容器侧轴两边有间隙，中间的间隙是两边的 2 倍
+
+一个元素设置弹性盒之后，子元素的浮动，清除浮动，vertical-align 失效  
+弹性盒子里面的子元素会产生一个块级框，可以设置宽高
+
+弹性盒子元素属性
+
+### 7.align-self：(元素单独在侧轴的对齐方式)
+
+- flex-start 项目单独在侧轴的开始位置
+- flex-end 项目单独在侧轴的结束位置
+- center 项目单独在侧轴的中间位置
+- baseline 仙姑单独在侧轴的基线位置
+- stretch 拉伸适应容器
+- auto **默认** 找父元素 align-items 的属性，如果父元素 align-items 属性没有，设置为 stretch
+
+### flex-grow：（项目在主轴的扩展比例）
+
+- 对剩余空间进行分配，如果父元素没有剩余空间，不进行分配
+- 0 不放大 **默认**
+- 1 只能写数值
+
+### flex-shrink: （元素收缩比率）
+
+- 1 收缩 **默认**
+- 0 不收缩
+
+### flex-basis:（元素的基准值）
+
+- auto **默认值**
+- 0 会根据内容撑开  
+  **弹性盒的子项目如果设置了 flex-basis,宽度有 flex-basis 决定**  
+  如果 flex-basis 和 width 有一个 auto，宽度由另一个没有 auto 的决定  
+  如果 flex-basis 和 width 都为 auto，宽度由内容撑开  
+  (如设置了 width 则元素尺寸由 width/height 决定（主轴方向），没有设置则由内容决定)
+
+### flex 简写
+
+flex:flex-grow flex-shrink flex-basis
+
+- auto: 1 1 auto
+- 1: 1 1 0%
+- 2: 2 1 0%
+- none: 0 0 auto
 
 ## 一、是什么
 

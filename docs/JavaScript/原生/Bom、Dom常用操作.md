@@ -91,8 +91,12 @@ document.documentElement.clientHeight
 
 ### 滚动条距离 不带单位
 
-document.documentElement.scrollTop：离顶部的距离  
-document.documentElement.scrollLeft：离左边的距离
+document.documentElement.scrollTop：离顶部的距离 scrollHeight(表示 body 所有元素的总长度(包括 body 元素自身的 padding),页面不能滚动时也是存在的,此时 scrollHeight 等于 clientHeight)    
+document.documentElement.scrollLeft：离左边的距离 scrollWidth
+
+offsetWidth、offsetHeight：获取盒模型的尺寸 -重点  
+offsetLeft、offsetTop：获取元素相对可视区的位置，无论是否有定位，都可以获取 - 重点  
+offsetParent ：获取元素的定位父级(元素)
 
 ## DOM
 
@@ -111,12 +115,12 @@ document.title
 ### 查
 
 1.这接通过 id 名获取元素对象(id 名不用加引号)  
-2.document.getElementById()
-3.document.getElementsByClassName() 返回类数组
+2.document.getElementById()  
+3.document.getElementsByClassName() 返回类数组  
 4.document.getElementsByTagName() 返回类数组 只能选取调用该方法的元素的后代元素 当 tagName 为\*时，表示选取所有元素  
 5.document.getElementsByName() 返回类数组 获取 name 的元素 一般在 form 表单中  
-通过 css 选择器选择元素对象
-6.document.querySelector()
+通过 css 选择器选择元素对象  
+6.document.querySelector()  
 document.querySelectorAll() 返回类数组
 
 参考：https://blog.csdn.net/Fancy_vae/article/details/108563476

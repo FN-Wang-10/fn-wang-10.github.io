@@ -1,3 +1,4 @@
+https://webpack.wuhaolin.cn/4%E4%BC%98%E5%8C%96/4-10%E4%BD%BF%E7%94%A8TreeShaking.html?q=
 ## webpack 基本配置
 
 ### 拆分配置和 merge 细看每个配置
@@ -1841,6 +1842,11 @@ module.exports = merge(webpackCommonConf, {
 ![](../../static/img/webpack/4DDD72B4-A36C-4912-9800-4F24198AC31B.png)
 
 ## Tree Shaking(删除无效代码)
+
+export暴露的函数，在业务代码中用到，就会打包到bundle中,没有用到就表示是死代码，会剔除  
+
+参考：https://webpack.wuhaolin.cn/4%E4%BC%98%E5%8C%96/4-10%E4%BD%BF%E7%94%A8TreeShaking.html?q=
+
 
 `mode:'production'`开启 Tree Shaking
 

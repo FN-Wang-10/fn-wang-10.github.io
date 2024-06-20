@@ -31,3 +31,33 @@ const jsonToFormData = (data) => {
   return new FormData();
 };
 ```
+
+```javascript
+/**
+ * 根据dataType 设置 request headers
+ *
+ * @param    {string}  dataType
+ */
+const getDataType = (dataType) => {
+  switch (dataType.toLowerCase()) {
+    case 'json':
+      return {
+        'Content-Type': 'application/json',
+      }; // 数据格式为json格式,用的多
+    case 'text':
+      return {
+        'Content-Type': 'text/plain',
+      }; // 纯文本传输，用得少
+    case 'form':
+      return {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      }; // 数据格式为"key1=value1&key2=value2"
+    case 'formdata':
+      return {
+        'Content-Type': 'multipart/form-data',
+      }; // 用户传输文件
+    default:
+      return {};
+  }
+};
+```

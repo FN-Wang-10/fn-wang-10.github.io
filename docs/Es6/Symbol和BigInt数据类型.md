@@ -17,7 +17,7 @@ console.log(s1 == s2); //false
 console.log(typeof Symbol()); // symbol
 ```
 
-Symbol 主要就是用来预防对象的属性出现重名覆盖的问题。
+Symbol **主要就是用来预防对象的属性出现重名覆盖的问题**。
 
 Object.getOwnPropertySymbols(obj)方法 返回一个数组，获取一个对象所有的 symbol 属性
 

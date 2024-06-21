@@ -1,4 +1,3 @@
-axios
 fetch() —— h5 自带的，只能用在浏览器 4kb  
 axios —— 是第三方的插件，包体积大一点，14kb  
 Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。  

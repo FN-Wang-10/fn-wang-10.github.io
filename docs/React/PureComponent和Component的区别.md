@@ -13,4 +13,4 @@ PureComponent 的作用：
  PureComponent 的最好作为展示组件，如果 prop 和 state 每次都会变，PureComponent 做浅比较也会影响性能，可以考虑直接用 Component；  
  对于 prop 和 state 数据结构比较复杂的情况，可以考虑自己重写 shouldComponentUpdate 方法来做优化；  
 
-**PureComponent 其实就是一个继承自 Component 的子类，会自动加载 shouldComponentUpdate 函数。当组件需要更新的时候，shouldComponentUpdate 会对组件的 props 和 state 进行一次浅比较。如果 props 和 state 都没有发生变化，那么 render 方法也就不会出发，当然也就省去了之后的虚拟 dom 的生成和对比，在 react 性能方面得到了优化。**
+**PureComponent 其实就是一个继承自 Component 的子类，会自动加载 shouldComponentUpdate 函数。当组件需要更新的时候，shouldComponentUpdate 会对组件的 props 和 state 进行一次浅比较。如果 props 和 state 都没有发生变化，那么 render 方法也就不会触发，当然也就省去了之后的虚拟 dom 的生成和对比，在 react 性能方面得到了优化。**

@@ -450,7 +450,12 @@ PureComponent 组件可以替换 shouldComponentUpdate,自动做监听（复杂�
 
 #### props 的更新（子组件）
 
-**1. UNSAFE_componentWillReceiveProps 组件将要接受 props （删除）** 1.组件初次渲染时不会执行 componentWillReceiveProps； 2.当 props 发生变化时执行 componentWillReceiveProps； 3.在这个函数里面，旧的属性仍可以通过 this.props 来获取； 4.此函数可以作为 react 在 prop 传入之后， render() 渲染之前更新 state 的机会。即可以根据属性的变化，通过调用 this.setState()来更新你的组件状态，在该函数中调用 this.setState() 将不会引起第二次渲染。 5.也可在此函数内根据需要调用自己的自定义函数，来对 prop 的改变做出一些响应。
+**1.UNSAFE_componentWillReceiveProps 组件将要接受 props （删除）**   
+1. 组件初次渲染时不会执行 componentWillReceiveProps；  
+2. 当 props 发生变化时执行 componentWillReceiveProps；   
+3. 在这个函数里面，旧的属性仍可以通过 this.props 来获取；  
+4. 此函数可以作为 react 在 prop 传入之后， render() 渲染之前更新 state 的机会。即可以根据属性的变化，通过调用 this.setState()来更新你的组件状态，在该函数中调用 this.setState() 将不会引起第二次渲染。   
+5. 也可在此函数内根据需要调用自己的自定义函数，来对 prop 的改变做出一些响应。
 注意：
 当父组件向子组件传递引用类型（或复合类型，比如对象、数组等）的属性时，要注意打印的 this.props 和 nextProps 的内容是一致的，因为引用类型在内存中只有一份，传值时是浅拷贝
 

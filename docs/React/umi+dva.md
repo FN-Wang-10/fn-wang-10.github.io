@@ -1,5 +1,8 @@
 官网https://umijs.org/zh-CN/docs/getting-started
 
+![](../../static/img/react/6A61AFDD-2443-4559-AB29-9311D37FCE36.png)
+![](../../static/img/react/35748B2E-67F0-4d4a-A417-4A525C07C290.png)
+
 umi 是基于 react 开发的，是阿里自己内部封装的脚手架（蚂蚁金服），比起 cra 脚手架功能更强大，阿里内部用的还有 BigFish，Iceworks（又名飞冰）  
 Ant Design —— web 端的组件库  
 Antd mobile —— 移动端的组件库  
@@ -132,8 +135,9 @@ react的v6版本的路由也有动态路由可选参数
 ### 04.嵌套路由
 
 Umi 里约定目录下有 \_layout.tsx 时会生成嵌套路由，以 \_layout.tsx 为该目录的 layout。layout 文件需要返回一个 React 组件，并通过 props.children 渲染子组件。  
-解释：哪个页面需要使用路由嵌套，就必须在这个页面所在的文件里面建一个\_layout.tsx 的文件，
-
+解释：哪个页面需要使用路由嵌套，就必须在这个页面所在的文件里面建一个\_layout.tsx 的文件，  
+![](../../static/img/react/8A84C6E1-BBE5-45f2-B267-66F7AFE95D15.png)
+![](../../static/img/react/F5CCEE16-AFA2-4b48-AA7D-FACCFE701945.png)  
 home 是一级路由  
 home1 是二级路由  
 必须在 home 里建一个\_layout.tsx 文件  
@@ -173,6 +177,8 @@ export default function IndexPage(props: IRouteComponentProps) {
   );
 }
 ```
+
+![](../../static/img/react/B555A39D-F08A-400e-9E2A-1750F9E95311.png)
 
 ### 05.全局 layouts
 
@@ -333,8 +339,11 @@ export default Request;
 ### 02.dva 状态管理
 
 dva 刚开始复制过来的时候，会有红线，关闭 vscode 之后再次打开项目就没有了，这个和电脑的配有有关  
+![](../../static/img/react/5371CE33-E0A6-4bab-AF86-4E9D1D37485B.png)
 dva model 小仓库  
 每个页面都可以有自己的小仓库，就相当于仓库的模块化，umi 中不需要使用大仓库进行整合，是约定好的
+![](../../static/img/react/3A52871C-CB50-44df-B978-2FBF32E17FD5.png)
+![](../../static/img/react/3E52FE50-D8E7-4fd6-9687-CB0D3F2163AE.png)
 
 model 用例一
 
@@ -708,6 +717,8 @@ export default {
   },
 };
 ```
+
+![](../../static/img/react/FD03DE65-05C9-47eb-B6F1-C443837A1F24.png)
 
 ```javascript
 // 制作假数据的

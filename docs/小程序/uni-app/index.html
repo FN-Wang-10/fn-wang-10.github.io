@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-小程序/uni-app" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.3.2">
+<title data-rh="true">uni-app | fn-wang-10.github.io</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://fn-wang-10.github.io/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://fn-wang-10.github.io/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://fn-wang-10.github.io/docs/小程序/uni-app"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="uni-app | fn-wang-10.github.io"><meta data-rh="true" name="description" content="uni-app 小程序的框架"><meta data-rh="true" property="og:description" content="uni-app 小程序的框架"><link data-rh="true" rel="icon" href="/img/logo.ico"><link data-rh="true" rel="canonical" href="https://fn-wang-10.github.io/docs/小程序/uni-app"><link data-rh="true" rel="alternate" href="https://fn-wang-10.github.io/docs/小程序/uni-app" hreflang="en"><link data-rh="true" rel="alternate" href="https://fn-wang-10.github.io/docs/小程序/uni-app" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="fn-wang-10.github.io RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="fn-wang-10.github.io Atom Feed"><link rel="stylesheet" href="/assets/css/styles.4daee39b.css">
+<script src="/assets/js/runtime~main.506940d9.js" defer="defer"></script>
+<script src="/assets/js/main.7a4582a2.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.ico" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.ico" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">fn-wang-10</b></a><a class="navbar__item navbar__link" href="/blog">博客</a></div><div class="navbar__items navbar__items--right"><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/docs/小程序/uni-app">uni-app</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/小程序/你对微信小程序的理解？优缺点？">你对微信小程序的理解？优缺点？</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/小程序/">小程序</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/小程序/微信小程序">微信小程序</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/小程序/微信小程序中路由跳转的方式有哪些？区别？">微信小程序中路由跳转的方式有哪些？区别？</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/小程序/微信小程序的发布流程？">微信小程序的发布流程？</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/小程序/微信小程序的实现原理？">微信小程序的实现原理？</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/小程序/微信小程序的支付流程？">微信小程序的支付流程？</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/小程序/微信小程序的生命周期函数有哪些？">微信小程序的生命周期函数有哪些？</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/小程序/微信小程序的登录流程？">微信小程序的登录流程？</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/小程序/提高微信小程序的应用速度的手段有哪些？">提高微信小程序的应用速度的手段有哪些？</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/小程序/生命周期">生命周期</a></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">uni-app</span><meta itemprop="position" content="1"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>uni-app</h1></header><p>uni-app 小程序的框架<br>
+<!-- -->uni-app 是一个使用 Vue.js (opens new window)开发所有前端应用的框架，开发者编写一套代码，可发布到 iOS、Android、Web（响应式）、以及各种小程序（微信/支付宝/百度/头条/飞书/QQ/快手/钉钉/淘宝）、快应用等多个平台。<br>
+<!-- -->一端编写多端运行<br>
+<!-- -->小程序 刚需低频<br>
+<!-- -->官网：<a href="https://uniapp.dcloud.net.cn/" target="_blank" rel="noopener noreferrer">https://uniapp.dcloud.net.cn/</a><br>
+<!-- -->uni-app 是用 vue 语法开发的<br>
+<!-- -->wepy 腾讯出的，使用 vue 语法<br>
+<!-- -->taro 京东出的，用 react 语法开发的</p>
+<p>使用 uni-app 框架开发小程序需要下载 HBuilder 编辑器，在 HBuilder 编辑器中写代码，然后打包，在微信开发者工具中引入打包的文件，查看效果（它会将 HBuilder 中的项目编译成小程序的语法）<br>
+<!-- -->不同的小程序都会有自己的开发工具</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="创建项目">创建项目<a href="#创建项目" class="hash-link" aria-label="Direct link to 创建项目" title="Direct link to 创建项目">​</a></h2>
+<p>1.在 HBuilder 中新建项目 ， 创建项目目录</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/截图-31c6fcd41e6692bc268a5b8b9e487f42.png" width="1183" height="972" class="img_ev3q"></p>
+<p>2.会生成项目</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/截图 (1)-d56fbd8b449e370bfa5de6200a8c7d0f.png" width="1120" height="643" class="img_ev3q"></p>
+<p>3.运行到小程序模拟器 ——&gt; 选择微信开发者工具</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/截图 (2)-5fc16a5915dcaa36cad7663a21f9980e.png" width="484" height="247" class="img_ev3q"></p>
+<p>4.选择微信开发者工具的安装路径(第一次需要选，第二次就不需要)
+<img decoding="async" loading="lazy" src="/assets/images/截图 (14)-0d203fade426f304f4f6d5e7e5176a0c.png" width="1169" height="549" class="img_ev3q"></p>
+<p>爆红也没事，包已经打好了<br>
+<!-- -->5.会生成 unpackage 文件 —— dist —— dev —— mp-weixin，就是打包的文件<br>
+<!-- -->6.打开微信开发者工具 ——&gt; 导入项目 ——&gt; 不要把整个项目导进来，只把打包的项目导进来（就是 mp-weixin 这个文件导进来），这时候在微信开发者工具上就可以看到效果了（导入微信开发者工具中的项目会自动编译成小程序的相关语法 .js .json .wxml .wxss，我们不用操作）<br>
+<!-- -->在 HBuilder 中是按照 vue 的相关语法结合微信小程序写的，写完之后会在微信开发者工具中转换成小程序的语法</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="教程">教程<a href="#教程" class="hash-link" aria-label="Direct link to 教程" title="Direct link to 教程">​</a></h2>
+<p><a href="https://uniapp.dcloud.net.cn/tutorial/" target="_blank" rel="noopener noreferrer">https://uniapp.dcloud.net.cn/tutorial/</a></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="项目目录">项目目录<a href="#项目目录" class="hash-link" aria-label="Direct link to 项目目录" title="Direct link to 项目目录">​</a></h3>
+<p>在教程——工程中<br>
+<a href="https://uniapp.dcloud.net.cn/tutorial/project.html" target="_blank" rel="noopener noreferrer">https://uniapp.dcloud.net.cn/tutorial/project.html</a><br>
+<!-- -->main.js—— 入口文件<br>
+<!-- -->app.vue —— 相当于根组件<br>
+<!-- -->pages.json —— 全局配置<br>
+<!-- -->uni.scss —— css 变量<br>
+<!-- -->menifest.json<br>
+<!-- -->static 静态资源<br>
+<!-- -->pages</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/截图 (4)-ae3ad387cc0104672460a1a4c1822a3e.png" width="464" height="659" class="img_ev3q"></p>
+<p>可以运行到不同的小程序中（百度，京东等），然后将打包对应的文件在不同的开发者工具中打开</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="生命周期">生命周期<a href="#生命周期" class="hash-link" aria-label="Direct link to 生命周期" title="Direct link to 生命周期">​</a></h3>
+<p>页面 <a href="https://uniapp.dcloud.net.cn/tutorial/page.html" target="_blank" rel="noopener noreferrer">https://uniapp.dcloud.net.cn/tutorial/page.html</a><br>
+<!-- -->页面——生命周期</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/截图 (5)-623e457164d18084633d0330b04272f0.png" width="803" height="839" class="img_ev3q"></p>
+<p>在 uni-app 中</p>
+<ul>
+<li>js 语法是按照 vue 的语法</li>
+<li>标签的使用是微信小程序的规范</li>
+<li>接口能力（JS API）靠近微信小程序规范（uni.request()）</li>
+<li>数据绑定及事件处理同 Vue.js 规范，同时补充了 App 及页面的生命周期（小程序的生命周期和 vue 的生命周期都可以写）</li>
+<li>为兼容多端运行，建议使用 flex 布局进行开发</li>
+<li>vue 的生命周期和小程序的生命周期能同时用<br>
+<!-- -->uni-ap 官网上还有别的生命周期，比如：<br>
+<!-- -->onPullDownRefresh（）<!-- --> —— 监听用户下拉刷新<br>
+<!-- -->配置<br>
+<!-- -->现在页面的配置也在全局配置中 pages.json style 就是页面的配置</li>
+</ul>
+<p><img decoding="async" loading="lazy" src="/assets/images/截图 (6)-70d3ba0cebadf5825dc23804a445df15.png" width="750" height="606" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="getapp">getApp()<a href="#getapp" class="hash-link" aria-label="Direct link to getApp()" title="Direct link to getApp()">​</a></h3>
+<p>getApp() 函数用于获取当前应用实例，一般用于获取 globalData 。<br>
+<!-- -->globalData 就是全局的状态，和微信小程序是一样的</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="页面通讯">页面通讯<a href="#页面通讯" class="hash-link" aria-label="Direct link to 页面通讯" title="Direct link to 页面通讯">​</a></h3>
+<p>路由<br>
+<!-- -->和微信小程序是一样的</p>
+<ul>
+<li>路由参照微信小程序（原生）规范，路由自动生成，tabbar 页面非 tabbar 页面</li>
+</ul>
+<p><block></block> 在不同的平台表现存在一定差异，推荐统一使用 <template></template>（就是空的占位标签）<br>
+<!-- -->引入 js，现在是支持 ES6 的 import 引入了</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="全局文件">全局文件<a href="#全局文件" class="hash-link" aria-label="Direct link to 全局文件" title="Direct link to 全局文件">​</a></h3>
+<ul>
+<li>pages.json 页面路由</li>
+<li>manifest.json 应用配置</li>
+<li>package.json</li>
+<li>vue.config.js</li>
+<li>vite.config.js</li>
+<li>uni.scss</li>
+<li>App.vue</li>
+<li>main.js</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="组件">组件<a href="#组件" class="hash-link" aria-label="Direct link to 组件" title="Direct link to 组件">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="api">API<a href="#api" class="hash-link" aria-label="Direct link to API" title="Direct link to API">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="项目注意">项目注  意<a href="#项目注意" class="hash-link" aria-label="Direct link to 项目注意" title="Direct link to 项目注意">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="uni-app-引入图片">uni-app 引入图片<a href="#uni-app-引入图片" class="hash-link" aria-label="Direct link to uni-app 引入图片" title="Direct link to uni-app 引入图片">​</a></h3>
+<p>图片只能先引入再使用<br>
+<!-- -->或者使用 import 引入</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/截图 (7)-ee855c198c9889aba329f2e860f6bc80.png" width="448" height="245" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="引入组件">引入组件<a href="#引入组件" class="hash-link" aria-label="Direct link to 引入组件" title="Direct link to 引入组件">​</a></h3>
+<p>组件也可以写在页面中的 components 文件夹中</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/截图 (8)-eebe45b5a475f02f007fdef1f827af66.png" width="728" height="424" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="静态资源">静态资源<a href="#静态资源" class="hash-link" aria-label="Direct link to 静态资源" title="Direct link to 静态资源">​</a></h3>
+<p>可以重建一个 common 文件，和 pages 文件同级<br>
+<!-- -->common——font——icon<br>
+<!-- -->commin——images——图片<br>
+<!-- -->可以将图片和 icon 放在里面</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="uni-app-中引入-icon">uni-app 中引入 icon<a href="#uni-app-中引入-icon" class="hash-link" aria-label="Direct link to uni-app 中引入 icon" title="Direct link to uni-app 中引入 icon">​</a></h3>
+<p>在 app.vue 页面中</p>
+<div class="language-javascript codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-javascript codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain">style</span><span class="token operator" style="color:#393A34">&gt;</span><span class="token comment" style="color:#999988;font-style:italic">/*每个页面公共css // @import url(&quot;@/static/iconfont.css&quot;); */</span><span class="token operator" style="color:#393A34">&lt;</span><span class="token operator" style="color:#393A34">/</span><span class="token plain">style</span><span class="token operator" style="color:#393A34">&gt;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="uni-app-分包">uni-app 分包<a href="#uni-app-分包" class="hash-link" aria-label="Direct link to uni-app 分包" title="Direct link to uni-app 分包">​</a></h2>
+<p>微信小程序规定的包的大小是不能超过 2M 的，可以做分包<br>
+<!-- -->分包:本来我要引入一个小程序的包，现在我先引入主包，分为主包和分包，只要主包不超过 2M，一开始会先把主包引入，剩下的页面放到其他的分包里面，到时候只要跳转到这个页面再去加载分包，这样一个小程序可以分成四次引入，每个包的大小还是 2M，这样小程序整体的体积就可以大一点，现在变为 16M 了，但是每个包的大小还是 2M<br>
+<!-- -->uni-app 官网中是有的<br>
+<!-- -->分 包配置<a href="https://uniapp.dcloud.net.cn/collocation/pages.html#subpackages" target="_blank" rel="noopener noreferrer">https://uniapp.dcloud.net.cn/collocation/pages.html#subpackages</a><br>
+<!-- -->在全局文件下的 subPackages 是用来做分包的</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/截图 (9)-23154921182d47fd5349101732b87e40.png" width="351" height="533" class="img_ev3q"></p>
+<p>pages 文件是我们的主包<br>
+<!-- -->我们可以自己去定义一些 pagesA，pagesB<br>
+<!-- -->这些包和 pages 是并列的位置<br>
+<!-- -->将不是 tabbar 页面的文件放在分包中<br>
+<!-- -->规定：不能对 tabbar 页面进行分包，tabbar 页面是必须放在主包中的<br>
+<!-- -->同时在 pages.json 配置文件中也要进行新增 subPackages 字段，用于分包的管理</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/截图 (10)-1b8e21b8afb09e094423521f29871cd4.png" width="494" height="529" class="img_ev3q">
+<img decoding="async" loading="lazy" src="/assets/images/截图 (15)-cb7e2f73b57ef6a2bf858ffd8e31be7f.png" width="404" height="380" class="img_ev3q">
+root 是分包名称<br>
+<!-- -->当我第一次打开小程序页面的时候，分包的内容是不会去加载的，只会先去加载主包的内容，只有当我进入分包页面的时候，他的内容才会加载<br>
+<!-- -->注意：跳转的时候的路径要及逆行修改</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="微信小程序登录">微信小程序登录<a href="#微信小程序登录" class="hash-link" aria-label="Direct link to 微信小程序登录" title="Direct link to 微信小程序登录">​</a></h2>
+<p>在微信小程序官方文档中搜 wx.login
+进入小程序的时候，会有一个微信账号授权，正常开发的 项目（不是小程序），进入的时候会让注册账号并且登录<br>
+<!-- -->在小程序中可以直接使用微信账号进行登录，但是数据库并不是存的你的微信号，而是用户 id,<br>
+<!-- -->小程序的登录就是让微信账号和用户 id 绑定起来，还可以获得一些用户的手机号...微信头像，昵称权限等等<br>
+<!-- -->在微信小程序官方文档中搜 wx.login，下面有一个相关文档，点击小程序登录，可以看到登录的流程图</p>
+<p>小程序可以通过微信官方提供的登录能力方便地获取微信提供的用户身份标识，快速建立小程序内的用户体系</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/截图 (12)-0fbbefcfabdec842cd76ddebd5c6a20b.png" width="710" height="720" class="img_ev3q"></p>
+<p>步骤
+用户进入小程序的时候，通过点击授权，可以调用 wx.login()这个方法，这个方法调用成功之后会返回一个 code（这个 code 是根据每个人不同的微信账号自动生成的）,接着后端会专门有一个接口，让把 code 发送给后端，后端拿到 code 之后，把(code,appid 就是注册小程序的 id,appsecret)再发送给微信的服务器,微信服务器会返回一个 session_key 和 openid(这两个东西就可以让你的微信号和这个小程序关联起来)，变成一个自定义的登录态（这是通过 session_key 和 openid 得到的）后端将登录态返回给前端，前端将登录态存在 stora 发起请求（就是知道是哪个用户了），返回对应的数据 ge 中，之后所有的请求都要带上 storage，有了 storage 时候，后端就知道是谁在</p>
+<p>说明<br>
+<!-- -->1.调用 wx.login() 获取 临时登录凭证 code ，并回传到开发者服务器。<br>
+<!-- -->2.调用 auth.code2Session 接口，换取 用户唯一标识 OpenID 、 用户在微信开放平台帐号下的唯一标识 UnionID（若当前小程序已绑定到微信开放平台帐号） 和 会话密钥 session_key。<br>
+<!-- -->之后开发者服务器可以根据用户标识来生成自定义登录态，用于后续业务逻辑中前后端交互时识别用户身份。<br>
+<!-- -->注意事项<br>
+<!-- -->1.会话密钥 session_key 是对用户数据进行 加密签名 的密钥。为了应用自身的数据安全，开发者服务器不应该把会话密钥下发到小程序，也不应该对外提供这个密钥。<br>
+<!-- -->2.临时登录凭证 code 只能使用一次</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="小程序支付流程">小程序支付流程<a href="#小程序支付流程" class="hash-link" aria-label="Direct link to 小程序支付流程" title="Direct link to 小程序支付流程">​</a></h2>
+<p><img decoding="async" loading="lazy" src="/assets/images/截图 (13)-95108c292b1ff87b46f5d8ef854bf8a4.png" width="1107" height="927" class="img_ev3q"></p></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--next" href="/docs/小程序/你对微信小程序的理解？优缺点？"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">你对微信小程序的理解？优缺点？</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#创建项目" class="table-of-contents__link toc-highlight">创建项目</a></li><li><a href="#教程" class="table-of-contents__link toc-highlight">教程</a><ul><li><a href="#项目目录" class="table-of-contents__link toc-highlight">项目目录</a></li><li><a href="#生命周期" class="table-of-contents__link toc-highlight">生命周期</a></li><li><a href="#getapp" class="table-of-contents__link toc-highlight">getApp()</a></li><li><a href="#页面通讯" class="table-of-contents__link toc-highlight">页面通讯</a></li><li><a href="#全局文件" class="table-of-contents__link toc-highlight">全局文件</a></li><li><a href="#组件" class="table-of-contents__link toc-highlight">组件</a></li><li><a href="#api" class="table-of-contents__link toc-highlight">API</a></li><li><a href="#项目注意" class="table-of-contents__link toc-highlight">项目注意</a></li><li><a href="#uni-app-引入图片" class="table-of-contents__link toc-highlight">uni-app 引入图片</a></li><li><a href="#引入组件" class="table-of-contents__link toc-highlight">引入组件</a></li><li><a href="#静态资源" class="table-of-contents__link toc-highlight">静态资源</a></li><li><a href="#uni-app-中引入-icon" class="table-of-contents__link toc-highlight">uni-app 中引入 icon</a></li></ul></li><li><a href="#uni-app-分包" class="table-of-contents__link toc-highlight">uni-app 分包</a></li><li><a href="#微信小程序登录" class="table-of-contents__link toc-highlight">微信小程序登录</a></li><li><a href="#小程序支付流程" class="table-of-contents__link toc-highlight">小程序支付流程</a></li></ul></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

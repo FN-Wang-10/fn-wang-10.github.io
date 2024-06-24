@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkfn_wang_10_github_io=self.webpackChunkfn_wang_10_github_io||[]).push([[97393],{81838:e=>{e.exports=JSON.parse('{"blogBasePath":"/blog","blogTitle":"Blog"}')}}]);

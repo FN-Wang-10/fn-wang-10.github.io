@@ -1,0 +1,5 @@
+- template: 空的占位标签
+- slot: 插槽的占位标签
+- component: 动态组件，要配合 is 属性 is 属性的值是一个组件的名称
+- keep-alive: 缓存组件
+- transition: 用于添加过渡和动画

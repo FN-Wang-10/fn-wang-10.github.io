@@ -1,3 +1,41 @@
+## this.$nextTick 异步更新队列
+
+```javascript
+<div id="app">
+      <p>{{ count }}</p>
+      <button @click="fn">btn</button>
+    </div>
+    <script src="../../Vue.js"></script>
+<script>
+  new Vue({
+    el: "#app",
+    data: {
+      count: 1,
+    },
+    methods: {
+      fn() {
+        // 直接从1变成4
+        // 虚拟dom，一次性做渲染，减少dom操作
+        // update的生命周期也可以看到这个问题
+        // 数据的改变和页面的渲染不是一起发生的
+        // this.count++;
+        // console.log(this.count);
+        // console.log(document.querySelector("p").innerHTML);
+        // this.count++;
+        // this.count++;
+
+        this.count++;
+        // nextTick表示下一次的事件轮询
+        // 等待页面渲染完再执行里面的回调函数
+        this.$nextTick(() => {
+          this.count++;
+        });
+      },
+    },
+  });
+</script>
+```
+
 ## 一、NextTick 是什么
 
 官方对其的定义

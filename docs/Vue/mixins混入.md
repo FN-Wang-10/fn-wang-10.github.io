@@ -1,3 +1,105 @@
+## 混入(mixins 选项[])
+
+混入： 分发可复用功能
+
+创建混入对象  
+跟组件创建的方式是一样，它没有 template 选项
+
+如果说 key 不同会进行合并，key 相同会替换，以组件自身的 key 值为准  
+生命周期是直接合并，不会替换的
+
+使用混入对象,数组的形式接收  
+props,inject 选项对象是需要加引号的  
+mixins 选项对象不能加引号的
+
+```javascript
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h3>混入-{{ count }}</h3>
+        <child></child>
+    </div>
+
+    <script src="../../Vue.js"></script>
+    <script>
+        // 混入： 分发可复用功能
+
+        // 创建混入对象
+        // 跟组件创建的方式是一样，它没有template选项
+
+        // 如果说key不同会进行合并，key相同会替换，以组件自身的key值为准
+        // 生命周期是直接合并，不会替换的
+        const myMixin = {
+            data() {
+                return {
+                    count: 10,
+                };
+            },
+            methods: {
+                fn() {
+                    console.log('fn');
+                },
+            },
+            mounted() {
+                console.log(123);
+            },
+        };
+        const myMixin2 = {
+            data() {
+                return {
+                    num: 200,
+                };
+            },
+        }
+        const Child = {
+            // 使用混入对象,数组的形式接收
+            // props,inject选项对象是需要加引号的
+            // mixins选项对象不能加引号的
+            mixins: [myMixin, myMixin2],
+            data() {
+                return {
+                    // count: 10,
+                    msg: 100,
+                    count: 20, //key相同会替换，以组件自身的key值为准
+                };
+            },
+            template: `
+                <div>child组件-{{ count }}-{{ msg }}-{{ num }}</div>
+            `,
+            mounted() {
+                this.fn();
+
+            },
+        }
+
+        new Vue({
+            el: '#app',
+            data: {
+                // count: 10,
+            },
+            mixins: [myMixin],
+            components: {
+                Child,
+            },
+            mounted() {
+                this.fn();
+            }
+        });
+    </script>
+</body>
+
+</html>
+```
+
 ## 一、mixin 是什么
 
 `Mixin`是面向对象程序设计语言中的类，提供了方法的实现。其他类可以访问`mixin`类的方法而不必成为其子类

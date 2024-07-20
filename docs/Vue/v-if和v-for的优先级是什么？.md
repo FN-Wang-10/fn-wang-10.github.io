@@ -1,3 +1,62 @@
+## 总结
+
+一个元素同时有v-for和v-if, v-for会有一个更高的优先级⭐  
+
+判断条件和item相关的时候，可以使用计算属性来过滤 
+1. 利用计算属性，先对数据进行过滤，过滤完之后再进行循环   
+
+2. 这种方法，添加一个show变量，对show进行判断，如果为true就进行循环，如果为false则不会进行循环  
+
+3. 判断条件和item无关的时候，可以把v-if放到父元素
+```javascript
+data: {
+                list: [1, 2, 3, 4, 5, 6, 7],
+                show: true,
+            },
+            computed: {
+                oddList() {
+                    return this.list.filter(item => item % 2);
+                },
+                newList() {
+                    if (this.show) {
+                        return this.list;
+                    } else {
+                        return [];
+                    }
+                }
+            },
+ 一个元素同时有v-for和v-if, v-for会有一个更高的优先级⭐
+        <ul>
+这种会有性能损耗
+            <li v-for="(item,index) in list" :key="index" v-if="item%2">{{ item }}</li>
+        </ul>
+
+判断条件和item相关的时候，可以使用计算属性来过滤
+1.利用计算属性，先对数据进行过滤，过滤完之后再进行循环
+        <ul>
+            <li v-for="(item,index) in oddList" :key="index" v-if="item%2">{{ item }}</li>
+        </ul>
+
+2.这种方法，添加一个show变量，对show进行判断，如果为true就进行循环，如果为false则不会进行循环
+        <ul>
+            <li v-for="(item,index) in newList" :key="index">{{ item }}</li>
+        </ul>
+
+3.判断条件和item无关的时候，可以把v-if放到父元素
+        <ul v-if="show">
+            <li v-for="(item,index) in list" :key="index">{{ item }}</li>
+        </ul>
+
+⑦  在 <template> 上使用 v-for
+类似于 v-if，你也可以利用带有 v-for 的 <template> 来循环渲染一段包含多个元素的内容。比如：
+
+<ul>
+  <template v-for="item in items">
+    <li>{{ item.msg }}</li>
+    <li class="divider" role="presentation"></li>
+  </template>
+</ul>
+```
 ## 一、作用
 
 `v-if` 指令用于条件性地渲染一块内容。这块内容只会在指令的表达式返回 `true`值的时候被渲染

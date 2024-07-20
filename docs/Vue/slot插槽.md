@@ -1,3 +1,256 @@
+## 插槽
+
+### 插槽(`<slot />`)
+
+插槽的作用：内容分发
+
+```javascript
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h3>插槽</h3>
+        <child>123</child>
+    </div>
+
+    <script src="../../Vue.js"></script>
+    <script>
+        // 插槽的作用：内容分发
+        // 前后都可以插
+        Vue.component('child', {
+            template: `
+                <div>child组件-<slot></slot></div>
+            `,
+        })
+        new Vue({
+            el: '#app',
+            data: {}
+        });
+    </script>
+</body>
+
+</html>
+```
+
+### 插槽(可以父传子)
+
+插槽不仅可以插入文本，还可以插入元素甚至组件  
+插槽的内容用的是父组件的作用域  
+父级模板里的所有内容都是在父级作用域中编译的；子模板里的所有内容都是在子作用域中编译的。  
+哪个组件的 template,就用那个组件的作用域
+
+```javascript
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 插槽不仅可以插入文本，还可以插入元素甚至组件 -->
+    <!-- 插槽的内容用的是父组件的作用域 -->
+    <!-- 父级模板里的所有内容都是在父级作用域中编译的；子模板里的所有内容都是在子作用域中编译的。 -->
+    <!-- 哪个组件的template,就用那个组件的作用域 -->
+    <div id="app">
+      <h3>插槽</h3>
+      <child>{{ count }}</child>
+    </div>
+
+    <script src="../../Vue.js"></script>
+    <script>
+      const Child = {
+        template: `
+          <div>child组件 - <slot></slot></div>
+        `,
+      };
+
+      new Vue({
+        el: "#app",
+        data() {
+          return {
+            count: 10,
+          };
+        },
+        components: {
+          Child,
+        },
+      });
+    </script>
+  </body>
+</html>
+
+```
+
+### 插槽的后背内容(默认值)
+
+slot 标签中间写的内容会作为插槽的默认内容
+
+```javascript
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h3>插槽的后备内容</h3>
+      <child></child>
+    </div>
+
+    <script src="../../Vue.js"></script>
+    <script>
+      // slot标签中间写的内容会作为插槽的默认内容
+      const Child = {
+        template: `
+          <div>child组件 - <slot>666</slot></div>
+        `,
+      };
+
+      new Vue({
+        el: "#app",
+        data: {},
+        components: {
+          Child,
+        },
+      });
+    </script>
+  </body>
+</html>
+
+```
+
+### 具名插槽(`v-slot` template name 属性)
+
+具名插槽的作用时：可以让我们想插哪里就插哪里  
+具名插槽使用 v-slot:指令，后面是冒号，冒号后面跟一个自定义的名字  
+同时 slot 标签里也要加一个 name 的属性，属性名就是上面的自定义名字  
+v-slot:可以简写成#
+
+```javascript
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 具名插槽的作用时：可以让我们想插哪里就插哪里 -->
+        <!-- 具名插槽使用v-slot:指令，后面是冒号，冒号后面跟一个自定义的名字 -->
+        <!-- 同时slot标签里也要加一个name的属性，属性名就是上面的自定义名字 -->
+        <!-- v-slot:可以简写成# -->
+        <h3>具名插槽</h3>
+        <child>
+            <!-- <span>123</span>
+            <span>456</span> -->
+            <template v-slot:left>
+                <span>123</span>
+            </template>
+            <template v-slot:right>
+                <span>456</span>
+            </template>
+            <!-- <span>789</span>
+            <span>888</span> -->
+            <!-- 下面的写法等同于上面的写法（上面注释的） -->
+            <template v-slot:default>
+                <span>789</span>
+                <span>888</span>
+            </template>
+        </child>
+    </div>
+
+    <script src="../../Vue.js"></script>
+    <script>
+        const Child = {
+            template: `
+                <div><slot name="left"></slot>-child组件-<slot name="right"></slot>-<slot></slot></div>
+            `,
+        }
+        new Vue({
+            el: '#app',
+            data: {},
+            components: {
+                Child,
+            }
+        });
+    </script>
+</body>
+
+</html>
+```
+
+### 作用域插槽(可以子传父)
+
+在子组件中 template 中通过自定义属性的方式传递，在父组件的子组件标签上通过`v-slot:default="slotProps"`接收
+
+```javascript
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h3>作用域插槽</h3>
+        <!-- count默认是父组件的作用域 -->
+        <!-- 作用域插槽就是想在这里使用子组件的作用域 -->
+        <child>
+            <template v-slot:default="slotProps">
+                <span>{{ slotProps.count }}</span>
+                <!-- 解构写法 -->
+                <!-- <template v-slot:default="{ count }>
+                        <span>{{ count }}</span> -->
+            </template>
+        </child>
+    </div>
+
+    <script src="../../Vue.js"></script>
+    <script>
+        const Child = {
+            data() {
+                return {
+                    count: 10,
+                }
+            },
+            template: `
+                <div>child组件-<slot :count="count"></slot></div>
+            `,
+        }
+        new Vue({
+            el: '#app',
+            data: {},
+            components: {
+                Child,
+            },
+        });
+    </script>
+</body>
+
+</html>
+```
+
 ## 一、slot 是什么
 
 在 HTML 中 `slot` 元素 ，作为 `Web Components` 技术套件的一部分，是 Web 组件内的一个占位符

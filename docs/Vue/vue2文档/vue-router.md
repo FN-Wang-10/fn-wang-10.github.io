@@ -61,7 +61,6 @@
             document.querySelector("#box").innerHTML = item.template;
           }
         });
-      });
     </script>
   </body>
 </html>
@@ -161,20 +160,20 @@ vue-router4 版本是给 vue3 用的
 
 ```javascript
 // 引入vue
-import Vue from "vue";
+import Vue from 'vue';
 // 引入app根组件
-import App from "./App.vue";
+import App from './App.vue';
 // 引入了路由实例
 // 路径直接到文件夹结束，引的是这个文件夹下面的Index.js文件(二阶段最后的项目也是这样的，有一个index.js文件)
 // 如果只是省略了文件后缀，会默认先找json->js->vue
-import router from "./router";
+import router from './router';
 
 Vue.config.productionTip = false;
 
 new Vue({
   router,
-  render: (h) => h(App),
-}).$mount("#app");
+  render: (h) => h(App)
+}).$mount('#app');
 ```
 
 ### App.vue
@@ -238,9 +237,9 @@ vue 的路由默认使用排他性路由(只要匹配到一个就不会再匹配
 
 ```javascript
 // 引入vue
-import Vue from "vue";
+import Vue from 'vue';
 // 引入router
-import VueRouter from "vue-router";
+import VueRouter from 'vue-router';
 
 // import命令必须在所有代码的上面
 // import Hot from "../views/HotView.vue";
@@ -256,64 +255,64 @@ Vue.use(VueRouter);
 const routes = [
   // 重定向（意思就是，如果我只记住了域名，只输入了域名，他会将你重定向里面的url拼接到域名后面，这样就可以之实现只输入域名尽可以进入到页面了）
   {
-    path: "/",
-    redirect: "/hot",
+    path: '/',
+    redirect: '/hot'
   },
   {
-    path: "/hot",
-    component: () => import("../views/HotView.vue"),
+    path: '/hot',
+    component: () => import('../views/HotView.vue'),
     // children属性用于做路由嵌套
     children: [
       // 再次重定向
       // 这里做的重定向，上面先重定向到hot页面，因为hot里面还有两个二级路由，然后在hot页面又有一个重定向到hot1,效果就是直接输入域名，就直接可以到hot1页面了
       {
-        path: "/hot",
-        redirect: "/hot/hot1",
+        path: '/hot',
+        redirect: '/hot/hot1'
       },
       {
-        path: "/hot/hot1",
-        component: () => import("../views/HotView1.vue"),
+        path: '/hot/hot1',
+        component: () => import('../views/HotView1.vue')
       },
       {
-        path: "/hot/hot2",
-        component: () => import("../views/HotView2.vue"),
-      },
-    ],
+        path: '/hot/hot2',
+        component: () => import('../views/HotView2.vue')
+      }
+    ]
   },
   {
-    path: "/cinema",
+    path: '/cinema',
     // 路由别名(意思就是，我也可以使用别名定义的这个url也可以访问到cinema页面，但是高亮就没有了)
-    alias: "/abc",
+    alias: '/abc',
     // 路由懒加载import函数
     // import函数可以做文件的异步引用（就是我用到了再去引入这个文件）
     // 添加了import函数之后，对于我们的首页打开速度就会相对更快一些，如果只点击首页的话，就只会加载首页的内容，当我点击别的router-link时，下一个才加载，就是谁使用了再去引入他的文件
-    component: () => import("../views/CinemaView.vue"),
+    component: () => import('../views/CinemaView.vue')
   },
   {
-    path: "/wait",
-    name: "wait",
+    path: '/wait',
+    name: 'wait',
     // component:()=>import("../views/WaitView.vue"),
     // 命名视图
     components: {
-      a: () => import("../views/WaitView.vue"),
-      b: () => import("../views/WaitView2.vue"),
-    },
+      a: () => import('../views/WaitView.vue'),
+      b: () => import('../views/WaitView2.vue')
+    }
   },
   // /:id表示匹配动态路由参数(可以有多个动态路由参数/:id/:num/:a)
   {
-    path: "/detail/:id",
-    component: () => import("../views/DetailView.vue"),
+    path: '/detail/:id',
+    component: () => import('../views/DetailView.vue')
   },
   // 404页面，一定要写在路由表的最后面
   {
-    path: "*",
-    component: () => import("../views/NotFound.vue"),
-  },
+    path: '*',
+    component: () => import('../views/NotFound.vue')
+  }
 ];
 
 // 创建一个路由实例
 const router = new VueRouter({
-  routes, //使用路由表
+  routes //使用路由表
 });
 
 //将路由实力进行暴露
@@ -640,6 +639,22 @@ router.push({ name: 'user', params: { userId: 123 } })
 
 ## 导航守卫
 
+### 总结
+
+router.beforeEach(全局前置守卫)  
+ 配合 meta 做路有鉴权  
+router.beforeResolve(全局解析守卫)  
+router.afterEach(全局后置钩子)  
+beforeEnter(路由独享的守卫)  
+ 单个页面的路由鉴权  
+beforeRouteEnter(组件内守卫)  
+ 先请求数据再进入页面  
+beforeRouteUpdate(组件内守卫)  
+ 组件复用  
+beforeRouteLeave(组件内守卫)
+
+回调函数中有三个参数 to, from, next
+
 ### 全局前置守卫（router.beforeEach）
 
 ```javascript
@@ -709,7 +724,7 @@ router.afterEach((to) => {
   console.log(to);
   console.log(from);
   通过路由切换去改变页面的标题;
-  document.title = to.meta.title || "猫眼电影 - 娱乐看猫眼";
+  document.title = to.meta.title || '猫眼电影 - 娱乐看猫眼';
 });
 ```
 

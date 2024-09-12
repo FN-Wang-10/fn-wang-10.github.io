@@ -12,3 +12,31 @@
 7. 在方法中，this 指向该方法所属的对象。
 
 this 永远指向最后调用它的对象
+
+```js
+var name = 'codereasy';
+let obj = {
+  name: '张三',
+  say: function () {
+    console.log(this.name);
+  }
+};
+obj.say(); // this指向调用者obj
+setTimeout(obj.say, 10); // setTimeout中this指向window  obj.say作为回调传入(传的只是这个函数的引用)
+// 函数中的this取决于调用时的执行上下文是谁
+
+// 张三 codereasy
+```
+
+```js
+var name = 'codereasy';
+let obj = {
+  name: '张三',
+  say: () => {
+    console.log(this.name);
+  }
+};
+obj.say();
+setTimeout(obj.say, 10);
+// codereasy codereasy
+```

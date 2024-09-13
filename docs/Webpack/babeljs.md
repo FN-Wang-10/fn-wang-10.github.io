@@ -93,8 +93,46 @@ babelrc.js
 - 自己独立的系统 没问题
 - 如果要开发一个开源的 `library` 可能有问题 ，使用 `babel-runtime`
 
+```js
+const sum = (a, b) => a + b;
+
+// 新的 API
+Promise.resolve(100).then((data) => data);
+
+// 新的 API
+[10, 20, 30].includes(20);
+
+// 语法，符合 ES5 语法规范
+// 不处理模块化（webpack）
+
+// 污染全局环境
+// window.Promise1 = function() {}
+// Array.prototype.includes1 = function () {}
+
+// 使用方
+// window.Promise = 'abc'
+// Array.prototype.includes = 100
+
+// es6 generate函数（异步函数）  目前都用 async await 这种方式
+function* run() {
+  console.log('one');
+  yield 'one';
+  console.log('two');
+  yield 'two';
+}
+```
+
 ```json
 {
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "usage",
+        "corejs": 3
+      }
+    ]
+  ],
   "plugins": [
     [
       "@babel/plugin-transform-runtime",
@@ -108,6 +146,20 @@ babelrc.js
     ]
   ]
 }
+
+// {
+//     "presets": [
+//         [
+//             "@babel/preset-env",
+//             {
+//                 "useBuiltIns": "usage",
+//                 "corejs": 3
+//             }
+//         ]
+//     ],
+//     "plugins": [
+//     ]
+// }
 ```
 
 ![](../../static/img/webpack/EDCD4A3F-D3A6-4f81-8522-BA1618EEFC65.png)

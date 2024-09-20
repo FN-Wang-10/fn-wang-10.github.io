@@ -16,11 +16,11 @@
 > 浏览器是不支持 ts，需要将 ts 转为 js
 
 > 安装 ts: `cnpm i typescript -g` 全局安装（cmd 使用管理员身份运行）  
-> 检测 ts 是否安装成功:打开终端，输入 tsc  
+> 检测 ts 是否安装成功:打开终端，输入 `tsc  -v`  
 > 编译 ts: `tsc ./src/index.ts --outFile ./dist/index.js`  
 > 实时监听  
-> tsc --init 能够生成 ts 的配置文件  
-> tsc --watch 监听
+> tsc --init 能够生成 ts 的配置文件(`tsconfig.json`)  
+> tsc --watch 监听(`tsc -w`)
 
 强类型语言，变量需要声明类型，java,c++  
 弱类型语言，变量不用声明类型，js  
@@ -28,6 +28,12 @@ TypeScript 是微软出的
 vsCode 也是微弱出的  
 vue3 的底层源码全部使用 ts 进行了重写  
 vue3 的项目使用 ts 进行开发，配合程度会比较好
+
+小满工具（切换 npm 下载源）  
+`npm i xmzs -g`  
+`mmp ls`查看所有 npm 下载源  
+`mmp use`使用  
+`mmp -h`查看所有命令
 
 ## 字符串类型
 
